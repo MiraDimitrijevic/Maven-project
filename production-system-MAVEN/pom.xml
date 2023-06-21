@@ -6,4 +6,9 @@
   <packaging>pom</packaging>
   <name>production desktop app</name>
   <description>production desktop app</description>
+  <modules>
+  	<module>klijent</module>
+  	<module>zajednicki</module>
+  	<module>server</module>
+  </modules>
 </project>

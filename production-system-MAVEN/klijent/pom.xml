@@ -6,4 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>klijent</artifactId>
+<dependencies>
+		<dependency>
+			<groupId>np.fon</groupId>
+			<artifactId>zajednicki</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

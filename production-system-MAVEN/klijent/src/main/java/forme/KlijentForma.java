@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import domen.Korisnik;
+
 public class KlijentForma extends JFrame {
 
 	private JPanel contentPane;
-
+     private Korisnik korisnik;
 	/**
 	 * Launch the application.
 	 */
@@ -39,6 +41,10 @@ public class KlijentForma extends JFrame {
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 		setTitle("Forma Klijent");
+	}
+
+	public void setKorisnik(Korisnik korisnik2) {
+		this.korisnik= korisnik2;
 	}
 
 }

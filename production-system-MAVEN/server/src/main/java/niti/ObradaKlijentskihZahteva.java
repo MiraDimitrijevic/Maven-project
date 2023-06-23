@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 
+import domen.Korisnik;
+import konstante.Operacije;
+import logika.Kontroler;
 import transfer.KlijentskiZahtev;
 import transfer.ServerskiOdgovor;
 
@@ -21,7 +25,20 @@ public ObradaKlijentskihZahteva(Socket s) {
 		KlijentskiZahtev kz= primiZahtev();
 		ServerskiOdgovor so= new ServerskiOdgovor();
 		switch (kz.getOperacija()) {
-		
+		case Operacije.LOGIN:
+			HashMap<String, String> mapa=(HashMap<String, String>) kz.getParametar();
+			String un= mapa.get("a");
+			String pass= mapa.get("b");
+			Korisnik kor= Kontroler.getInstance().login(un,pass);
+			so.setOdgovor(kor);
+			break;
+		case Operacije.REGISTRACIJA:
+			Korisnik korisnik= (Korisnik) kz.getParametar();
+			boolean uspesno=Kontroler.getInstance().register(korisnik);
+			System.out.println(uspesno);
+			so.setOdgovor(uspesno);
+			break;
+	
 		}
 		posaljiOdgovor(so);
 	}

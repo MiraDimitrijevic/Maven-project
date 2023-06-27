@@ -47,4 +47,9 @@ case 2:
 		}
 	}
 
+	public void setLista(ArrayList<Materijal> materijali) {
+lista= materijali;
+fireTableDataChanged();
+	}
+
 }

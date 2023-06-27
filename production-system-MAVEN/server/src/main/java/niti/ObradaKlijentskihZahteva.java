@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import domen.Korisnik;
+import domen.Materijal;
+import domen.Pogon;
 import konstante.Operacije;
 import logika.Kontroler;
 import transfer.KlijentskiZahtev;
@@ -34,11 +37,23 @@ public ObradaKlijentskihZahteva(Socket s) {
 			break;
 		case Operacije.REGISTRACIJA:
 			Korisnik korisnik= (Korisnik) kz.getParametar();
-			boolean uspesno=Kontroler.getInstance().register(korisnik);
-			System.out.println(uspesno);
-			so.setOdgovor(uspesno);
+			boolean uspesnoReg=Kontroler.getInstance().register(korisnik);
+			System.out.println(uspesnoReg);
+			so.setOdgovor(uspesnoReg);
 			break;
-	
+		case Operacije.PRIKAZI_SVE_MATERIJALE:
+			ArrayList<Materijal> materijali= Kontroler.getInstance().vratiMaterijale();
+			so.setOdgovor(materijali);
+			break;
+		case Operacije.SACUVAJ_MATERIJAL:
+			Materijal materijal= (Materijal) kz.getParametar();
+			boolean uspesnoMat= Kontroler.getInstance().sacuvajMaterijal(materijal);
+			so.setOdgovor(uspesnoMat);
+			break;
+		case Operacije.PRIKAZI_SVE_POGONE:
+			ArrayList<Pogon> pogoni= Kontroler.getInstance().vratiPogone();
+			so.setOdgovor(pogoni);
+			break;
 		}
 		posaljiOdgovor(so);
 	}

@@ -55,4 +55,9 @@ case 0:
 				return "return";
 			}
 		}
+
+		public void setLista(ArrayList<Pogon> pogoni) {
+			lista=pogoni;
+			fireTableDataChanged();
+		}
 }

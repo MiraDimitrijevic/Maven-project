@@ -6,6 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>server</artifactId>
+<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+	</properties>
 <dependencies>
 		<dependency>
 			<groupId>np.fon</groupId>

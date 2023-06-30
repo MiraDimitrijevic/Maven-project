@@ -44,4 +44,26 @@ public class ModelTabeleElementProizvodnje extends AbstractTableModel{
 				return "return";
 			}
 		}
+
+		public void dodajElement(ElementProizvodnje epro) {
+			epro.setRbr(lista.size()-1);
+			lista.add(epro);
+			fireTableDataChanged();
+		}
+
+		public void obrisiElement(int row) {
+			for (int i = lista.size()-1; i >row ; i--) {
+				lista.get(i).setRbr(lista.get(i).getRbr()-1);
+			}
+		
+			lista.remove(row);
+			fireTableDataChanged();
+
+
+			
+		}
+
+		public ArrayList<ElementProizvodnje> getLista() {
+			return lista;
+		}
 }

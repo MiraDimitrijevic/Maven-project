@@ -1,6 +1,7 @@
 package modeli;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -43,5 +44,25 @@ case 0:
 			default:
 				return "return";
 			}
+		}
+
+		public void dodajMaterijal(ElementProizvoda ep) {
+			ep.setRbr(lista.size()+1);
+			lista.add(ep);
+			fireTableDataChanged();
+		}
+
+		public void obrisiMaterijal(int row) {
+			for (int i = lista.size()-1; i >row ; i--) {
+				lista.get(i).setRbr(lista.get(i).getRbr()-1);
+			}
+		
+			lista.remove(row);
+			fireTableDataChanged();
+
+		}
+		
+		public ArrayList<ElementProizvoda> getLista() {
+			return lista;
 		}
 }

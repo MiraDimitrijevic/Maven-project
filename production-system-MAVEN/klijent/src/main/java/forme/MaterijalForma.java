@@ -79,7 +79,7 @@ public class MaterijalForma extends javax.swing.JFrame {
         			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Èuvanje nije omoguæeno", JOptionPane.WARNING_MESSAGE);
         		return;
         		}
-        		double kolicina= Double.valueOf(txtKolicina.getText());
+        		double kolicina= Double.valueOf(txtKolicina.getText().replace(',', '.'));
         		Materijal materijal= new Materijal(-1, naziv, opis, kolicina);
         		
         		KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.SACUVAJ_MATERIJAL , materijal);

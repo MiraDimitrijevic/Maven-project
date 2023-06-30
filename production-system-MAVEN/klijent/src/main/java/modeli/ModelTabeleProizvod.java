@@ -55,4 +55,13 @@ public class ModelTabeleProizvod extends AbstractTableModel{
 				return "return";
 			}
 		}
+
+		public void setLista(ArrayList<Proizvod> proizvodi) {
+			lista= proizvodi;
+			fireTableDataChanged();
+		}
+
+		public Proizvod getProizvod(int row) {
+			return lista.get(row);
+		}
 }

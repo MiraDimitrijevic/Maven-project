@@ -60,4 +60,8 @@ case 0:
 			lista=pogoni;
 			fireTableDataChanged();
 		}
+
+		public Pogon getPogon(int row) {
+			return lista.get(row);
+		}
 }

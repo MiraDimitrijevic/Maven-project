@@ -58,6 +58,11 @@ public class RegistracijaForma extends javax.swing.JFrame {
         		String korisnickoIme= txtIKorisnickoIme.getText();
         		String lozinka= String.valueOf(txtLozinka.getText());
         		String rm= txtRadnoMesto.getText();
+        		if(imePrezime.isEmpty() || korisnickoIme.isEmpty() || lozinka.isEmpty() || rm.isEmpty())
+        		{
+        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Registracija nije omoguæena", JOptionPane.WARNING_MESSAGE);
+        		return;
+        		}
         		Korisnik korisnik= new Korisnik(-1, imePrezime, korisnickoIme, lozinka, rm);
         		
         		KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.REGISTRACIJA, korisnik);

@@ -126,6 +126,7 @@ Korisnik korisnik;
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {                                    
 NoviProizvodForma npf= new NoviProizvodForma();
+npf.setKorisnik(korisnik);
 npf.setVisible(true);
     }                                   
 
@@ -141,6 +142,7 @@ npf.setVisible(true);
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {                                    
       ProizvodnjaForma npf= new ProizvodnjaForma();
+      npf.setKorisnik(korisnik);
 npf.setVisible(true);  
     }                                   
 

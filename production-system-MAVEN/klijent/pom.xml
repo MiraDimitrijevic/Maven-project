@@ -5,6 +5,7 @@
     <artifactId>production-system-MAVEN</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+
   <artifactId>klijent</artifactId>
 <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -83,5 +83,10 @@ public Pogon(long pogonID, Date datumPocetkaRada, Grad grad, String adresa, Stri
 	this.korisnik = korisnik;
 }
 
+@Override
+	public String toString() {
+		return grad+" ,"+adresa;
+	}
+
 
 }

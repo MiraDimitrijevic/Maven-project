@@ -18,14 +18,37 @@ import konstante.Operacije;
 import logika.Kontroler;
 import transfer.KlijentskiZahtev;
 import transfer.ServerskiOdgovor;
-
+/**
+ * Klasa ObradaKlijentskihZahteva omogucuje komunikaciju sa svakim klijentom
+ * ponaosob. Obradjuje njihove zahteve i kreira i salje odgovrajajuce odgovore. Nasledjuje klasu Thread.
+ * Sadrzi soket {link Socket}.
+ * @see Thread
+ * @author Mirjana Dimitrijevic
+ *
+ */
 public class ObradaKlijentskihZahteva extends Thread{
+	/**
+	 * Soket sluzi za komunikaciju izmedju klijenta i servera.
+	 */
 Socket s;
 
+/**
+ * Kreira objekat klase ObradaKlijentskihZahteva na osnovu zadatog
+ * soketa.
+ * @param s Soket za uspostavljanje komunikacije izmedju servera i nekog klijenta.
+ */
 public ObradaKlijentskihZahteva(Socket s) {
 	this.s = s;
 }
-
+/**
+ * Metoda run specificna je za niti, pokrece se kada se pokrene i nit.
+ * Ova metoda sve vreme osluskuje da li je stigao zahtev od klijenta
+ * za koji je soket i kreiran. Kada zahtev stigne, kreira se odgovor,
+ * a zatim se na osnovu sistemske operacije koju je korisnik pokrenuo,
+ * odgovoru dodeljuju odredjeni objekti. Metoda sve vreme komunicira
+ * sa Kontrolerom koji izvrsava sistemske operacije. Na samom kraju,
+ * odgovor se salje klijentu.
+ */
 @Override
 	public void run() {
 	while (true) {
@@ -105,7 +128,12 @@ public ObradaKlijentskihZahteva(Socket s) {
 		posaljiOdgovor(so);
 	}
 	}
-
+/**
+ * Salje odgovor klijentu.
+ * Koristi klasu {@link ObjectOutputStream} za slanje odgovora.
+ * @param so Serverski odgovor koji se salje klijentu.
+ * Baca IOException ako serverski odgovor nije serijalizovan.
+ */
 public void posaljiOdgovor(ServerskiOdgovor so) {
 	try {
 		ObjectOutputStream oos= new ObjectOutputStream(s.getOutputStream());
@@ -116,7 +144,14 @@ public void posaljiOdgovor(ServerskiOdgovor so) {
 	}
 	
 }
-
+/**
+ * Prima zahtev od klijenta.
+ * Koristi klasu {@link ObjectInputStream} za prijem zahteva.
+ * 
+ * Baca IOException kada se desi greska u toku deserijalizacije klijentskog zahteva.
+ * Baca ClassNotFoundException u slucaju da klasa KlijentskiZahtev nije pronadjena. 
+ * @return Klijentski zahtev koji je procitan.
+ */
 public KlijentskiZahtev primiZahtev() {
 	try {
 		ObjectInputStream ois= new ObjectInputStream(s.getInputStream());

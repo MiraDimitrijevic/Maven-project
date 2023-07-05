@@ -38,7 +38,7 @@ public static Komunikacija getInstance() {
  * Kreira objekat klase Komunikacija, i otvara soket na portu 9000,
  * cime se omogucava razmena podataka sa serverom.
  
- * @throws IOException kada je port 9000 zauzet.
+ * Vraca IOException kada je port 9000 zauzet.
  */
 public Komunikacija() {
 	try {
@@ -53,7 +53,7 @@ public Komunikacija() {
  * Salje zahtev serveru.
  * Koristi klasu {@link ObjectOutputStream} za slanje zahteva.
  * @param kz Zahtev klijenta koji se salje serveru.
- * @throws IOException ako klijentski zahtev nije serijalizovan.
+ * Vraca IOException ako klijentski zahtev nije serijalizovan.
  */
 public void posaljiZahtev(KlijentskiZahtev kz) {
 	try {
@@ -69,8 +69,8 @@ public void posaljiZahtev(KlijentskiZahtev kz) {
  * Prima odgovor od servera.
  * Koristi klasu {@link ObjectInputStream} za prijem odgovora.
  * 
- * @throws IOException kada se desi greska u toku deserijalizacije serverskog odgovora.
- * @throws ClassNotFoundException u slucaju da klasa ServerskiOdgovor nije pronadjena. 
+ * Vraca IOException kada se desi greska u toku deserijalizacije serverskog odgovora.
+ * Vraca ClassNotFoundException u slucaju da klasa ServerskiOdgovor nije pronadjena. 
  * @return Serverski odgovor koji je procitan.
  */
 public ServerskiOdgovor primiOdgovor() {

@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import com.google.gson.Gson;
+
 import transfer.KlijentskiZahtev;
 import transfer.ServerskiOdgovor;
 /**
@@ -57,13 +59,15 @@ public Komunikacija() {
  */
 public void posaljiZahtev(KlijentskiZahtev kz) {
 	try {
+		
 		ObjectOutputStream oos= new ObjectOutputStream(s.getOutputStream());
-		oos.writeObject(kz);
+		Gson gson= new Gson();
+        String jsonZahtev= gson.toJson(kz);
+		oos.writeObject(jsonZahtev);
 		oos.flush();
 	} catch (IOException e) {
 		e.printStackTrace();
-	}
-	
+	}	
 }
 /**
  * Prima odgovor od servera.
@@ -75,8 +79,11 @@ public void posaljiZahtev(KlijentskiZahtev kz) {
  */
 public ServerskiOdgovor primiOdgovor() {
 	try {
+		
 		ObjectInputStream ois= new ObjectInputStream(s.getInputStream());
-		return (ServerskiOdgovor) ois.readObject();
+		Gson gson= new Gson();
+		ServerskiOdgovor so= gson.fromJson((String) ois.readObject(), ServerskiOdgovor.class);
+		return so;
 	} catch (IOException e) {
 		e.printStackTrace();
 	} catch (ClassNotFoundException e) {

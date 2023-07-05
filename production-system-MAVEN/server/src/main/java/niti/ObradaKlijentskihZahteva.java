@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.google.gson.Gson;
+
 import domen.Grad;
 import domen.JedinicaMere;
 import domen.Korisnik;
@@ -137,7 +139,9 @@ public ObradaKlijentskihZahteva(Socket s) {
 public void posaljiOdgovor(ServerskiOdgovor so) {
 	try {
 		ObjectOutputStream oos= new ObjectOutputStream(s.getOutputStream());
-		oos.writeObject(so);
+		Gson gson= new Gson();
+        String jsonOdgovor= gson.toJson(so);
+		oos.writeObject(jsonOdgovor);
 		oos.flush();
 	} catch (IOException e) {
 		e.printStackTrace();
@@ -155,7 +159,9 @@ public void posaljiOdgovor(ServerskiOdgovor so) {
 public KlijentskiZahtev primiZahtev() {
 	try {
 		ObjectInputStream ois= new ObjectInputStream(s.getInputStream());
-		return (KlijentskiZahtev) ois.readObject();
+		Gson gson= new Gson();
+		KlijentskiZahtev kz= gson.fromJson((String) ois.readObject(), KlijentskiZahtev.class);
+		return kz;
 	} catch (IOException e) {
 		e.printStackTrace();
 	} catch (ClassNotFoundException e) {

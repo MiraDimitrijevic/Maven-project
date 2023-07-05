@@ -5,11 +5,24 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import domen.Proizvod;
-
+/**
+ *Klasa koja definise model tabele za obradu proizvoda koji se nalaze
+ *u bazi podataka.
+ *. Nasledjuje {@link AbstractTableModel }.
+ * @author Mirjana Dimitrijevic
+ */
 public class ModelTabeleProizvod extends AbstractTableModel{
+	/**
+	 * Lista proizvoda prikazanih u tabeli.
+	 */
 	ArrayList<Proizvod> lista;
-	String[] kolone= {"Naziv","Opis","Kolièina","Patent","Vek trajanja (mesec)","Datum poèetka proizvodnje"};
-
+	/**
+	 * Nazivi kolona.
+	 */
+	String[] kolone= {"Naziv","Opis","Kolicina","Patent","Vek trajanja (mesec)","Datum pocetka proizvodnje"};
+	/**
+	 * Kreira prazan objekat klase i inicijalizuje listu.
+	 */
 	public ModelTabeleProizvod() {
 		lista= new ArrayList<Proizvod>();
 		
@@ -55,12 +68,20 @@ public class ModelTabeleProizvod extends AbstractTableModel{
 				return "return";
 			}
 		}
-
+/**
+ * Postavlja listu proizvoda na listu proizvoda preuzetu
+ * iz baze podataka.
+ * @param proizvodi Lista proizvoda iz baze podataka.
+ */
 		public void setLista(ArrayList<Proizvod> proizvodi) {
 			lista= proizvodi;
 			fireTableDataChanged();
 		}
-
+/**
+ * Vraca proizvod koji se nalazi u selektovanom redu u tabeli.
+ * @param row Redni broj reda u tabeli.
+ * @return Proizvod koji se nalazi u odgovarajucem redu u tabeli.
+ */
 		public Proizvod getProizvod(int row) {
 			return lista.get(row);
 		}

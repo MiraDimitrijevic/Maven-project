@@ -6,11 +6,23 @@ import java.util.Iterator;
 import javax.swing.table.AbstractTableModel;
 
 import domen.ElementProizvoda;
-
+/**
+ *Klasa koja definise model tabele za obradu elemenata proizvoda.
+ *. Nasledjuje {@link AbstractTableModel }.
+ * @author Mirjana Dimitrijevic
+ */
 public class ModelTabeleElementProizvoda extends AbstractTableModel{
+	/**
+	 * Lista elemenata proizvoda prikazanih u tabeli.
+	 */
 	ArrayList<ElementProizvoda> lista;
-	String[] kolone= {"Materijal","JM","Kolièina"};
-
+	/**
+	 * Nazivi kolona.
+	 */
+	String[] kolone= {"Materijal","JM","Kolicina"};
+	/**
+	 * Kreira prazan objekat klase i inicijalizuje listu.
+	 */
 	public ModelTabeleElementProizvoda() {
 		lista= new ArrayList<ElementProizvoda>();
 		
@@ -45,13 +57,25 @@ case 0:
 				return "return";
 			}
 		}
-
+/**
+ * Dodaje novi element proizvoda u listu, postavlja njegov
+ * identifikator i prikazuje promenu na korisnickom interfejsu.
+ * @param ep Element proizvoda koji se dodaje u listu.
+ * 
+ */
 		public void dodajMaterijal(ElementProizvoda ep) {
 			ep.setRbr(lista.size()+1);
 			lista.add(ep);
 			fireTableDataChanged();
 		}
-
+		/**
+		 * Brise element proizvoda iz liste na osnovu selektovanog reda u tabeli, 
+		 * menja identifikatore ostalih elemenata i 
+		 *  prikazuje promenu na korisnickom interfejsu.
+		 * @param row redni broj reda tabele u kom se nalazi element
+		 * koji zelimo da obrisemo.
+		 * 
+		 */
 		public void obrisiMaterijal(int row) {
 			for (int i = lista.size()-1; i >row ; i--) {
 				lista.get(i).setRbr(lista.get(i).getRbr()-1);
@@ -61,7 +85,10 @@ case 0:
 			fireTableDataChanged();
 
 		}
-		
+		/**
+		 * Vraca listu elemenata proizvoda prikazanih u tabeli.
+		 * @return Lista elemenata proizvoda iz tabele.
+		 */
 		public ArrayList<ElementProizvoda> getLista() {
 			return lista;
 		}

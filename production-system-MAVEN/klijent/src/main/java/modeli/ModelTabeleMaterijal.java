@@ -5,11 +5,24 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 import domen.Materijal;
-
+/**
+ *Klasa koja definise model tabele za prikaz materijala koji se nalaze
+ *u bazi podataka.
+ *. Nasledjuje {@link AbstractTableModel }.
+ * @author Mirjana Dimitrijevic
+ */
 public class ModelTabeleMaterijal extends AbstractTableModel {
+	/**
+	 * Lista materijala prikazanih u tabeli.
+	 */
 ArrayList<Materijal> lista;
+/**
+ * Nazivi kolona.
+ */
 String[] kolone= {"Naziv", "Opis", "Kolicina"};
-
+/**
+ * Kreira prazan objekat klase i inicijalizuje listu.
+ */
 public ModelTabeleMaterijal() {
 	lista= new ArrayList<Materijal>();
 	
@@ -46,7 +59,11 @@ case 2:
 			return "return";
 		}
 	}
-
+	/**
+	 * Postavlja listu materijala na listu materijala preuzetu
+	 * iz baze podataka.
+	 * @param materijali Lista materijala iz baze podataka.
+	 */
 	public void setLista(ArrayList<Materijal> materijali) {
 lista= materijali;
 fireTableDataChanged();

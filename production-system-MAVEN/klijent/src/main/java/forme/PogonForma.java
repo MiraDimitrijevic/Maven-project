@@ -28,10 +28,15 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
- *
- * @author 38169
+ *Klasa koja predstavlja GKI i sluzi za prikaz svih pogona koji su
+ *uneti u sistem, kao i za unos novog pogona, ili izmenu postojeceg.
+ *. Nasledjuje {@link javax.swing.JFrame }.
+ * @author Mirjana Dimitrijevic
  */
 public class PogonForma extends javax.swing.JFrame {
+	/**
+	 * Pogon koji je potrebno izmeniti.
+	 */
 Pogon pogonIzmena;
     /**
      * Creates new form PogonForma
@@ -46,19 +51,28 @@ Pogon pogonIzmena;
         popuniKorisnike();
     }
     
-    
+ /**
+  * Metoda koja vraca pogon koji je potreno izmeniti.
+  * @return Pogon koji ce se izmeniti.
+  */
 
     public Pogon getPogonIzmena() {
 		return pogonIzmena;
 	}
 
 
-
+    /**
+     * Metoda koja postavlja podatke o pogonu koji ce se izmeniti.
+     * @param pogonIzmena Pogon koji ce se izmeniti.
+     */
 	public void setPogonIzmena(Pogon pogonIzmena) {
 		this.pogonIzmena = pogonIzmena;
 	}
 
-
+/**
+ * Metoda koja popunjava combobox sa podacima o svim korisnicima,
+ * koji su uzeti iz baze podataka.
+ */
 
 	private void popuniKorisnike() {
 cmbNadlezni.removeAllItems();
@@ -70,7 +84,10 @@ for (Korisnik korisnik : korisnici) {
 	cmbNadlezni.addItem(korisnik);
 }
 	}
-
+	/**
+	 * Metoda koja popunjava combobox sa podacima o svim gradovima,
+	 * koji su uzeti iz baze podataka.
+	 */
 	private void popuniGradove() {
 		cmbGrad.removeAllItems();
 		KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.PRIKAZI_SVE_GRADOVE, null);
@@ -81,7 +98,10 @@ for (Korisnik korisnik : korisnici) {
 			cmbGrad.addItem(grad);
 		}
 	}
-
+	/**
+	 * Metoda koja popunjava tabelu sa podacima o svim pogonima,
+	 * koji su uzeti iz baze podataka.
+	 */
 	private void popuniTabelu() {
     	ModelTabelePogon mtp= (ModelTabelePogon) tblPogon.getModel();
     	KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.PRIKAZI_SVE_POGONE, null);
@@ -123,7 +143,7 @@ for (Korisnik korisnik : korisnici) {
         		String kontakt= txtKontakt.getText();
         		if(adresa.isEmpty() || kontakt.isEmpty() || txtDatumPocetkaRada.getText().isEmpty())
         		{
-        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Èuvanje nije omoguæeno", JOptionPane.WARNING_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Cuvanje nije omoguceno", JOptionPane.WARNING_MESSAGE);
         		return;
         		}
         		Grad grad=(Grad) cmbGrad.getSelectedItem();
@@ -139,9 +159,9 @@ for (Korisnik korisnik : korisnici) {
 			    	ServerskiOdgovor so= Komunikacija.getInstance().primiOdgovor();
 			    	
 			    	if((Boolean) so.getOdgovor()) {
-	        			JOptionPane.showMessageDialog(null, "Pogon je uspešno saèuvan", "Èuvanje uspešno", JOptionPane.INFORMATION_MESSAGE);
+	        			JOptionPane.showMessageDialog(null, "Pogon je uspesno sacuvan", "Cuvanje uspesno", JOptionPane.INFORMATION_MESSAGE);
                          popuniTabelu();
-	        		} else         			JOptionPane.showMessageDialog(null, "Došlo je do greške, pokušajte ponovo", "Èuvanje nije omoguæeno", JOptionPane.ERROR_MESSAGE);
+	        		} else         			JOptionPane.showMessageDialog(null, "Doslo je do greske, pokusajte ponovo", "Cuvanje nije omoguceno", JOptionPane.ERROR_MESSAGE);
 					
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
@@ -198,7 +218,7 @@ for (Korisnik korisnik : korisnici) {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Datum poèetka rada pogona:");
+        jLabel1.setText("Datum pocetka rada pogona:");
 
         jLabel2.setText(" Grad:");
 
@@ -208,7 +228,7 @@ for (Korisnik korisnik : korisnici) {
 
         jLabel5.setText(" Aktivan:");
 
-        jLabel6.setText("Nadležni:");
+        jLabel6.setText("Nadlezni:");
 
         txtDatumPocetkaRada.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd.MM.yyyy"))));
 
@@ -238,7 +258,7 @@ for (Korisnik korisnik : korisnici) {
 
         btnIzmeniIzab.setText("Izmeni izabrani pogon");
 
-        btnOsvezi.setText("Osveži listu pogona");
+        btnOsvezi.setText("Osvezi listu pogona");
         
         btnIzmeni = new JButton("Izmeni pogon");
         btnIzmeni.addActionListener(new ActionListener() {
@@ -248,7 +268,7 @@ String adresa=txtAdresa.getText();
 String kontakt= txtKontakt.getText();
 if(adresa.isEmpty() || kontakt.isEmpty() || txtDatumPocetkaRada.getText().isEmpty())
 {
-	JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Èuvanje nije omoguæeno", JOptionPane.WARNING_MESSAGE);
+	JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Cuvanje nije omoguceno", JOptionPane.WARNING_MESSAGE);
 return;
 }
 Grad grad=(Grad) cmbGrad.getSelectedItem();
@@ -263,7 +283,7 @@ try {
 	Komunikacija.getInstance().posaljiZahtev(kz);
 	ServerskiOdgovor so= Komunikacija.getInstance().primiOdgovor();
 	if((Boolean) so.getOdgovor()) {
-		JOptionPane.showMessageDialog(null, "Pogon je uspešno izmenjen", "Izmena uspešna", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Pogon je uspesno izmenjen", "Izmena uspesna", JOptionPane.INFORMATION_MESSAGE);
          popuniTabelu();
          btnIzmeni.setEnabled(false);
          btnSacuvaj.setEnabled(true);
@@ -273,7 +293,7 @@ try {
          txtAdresa.setText("");
          txtDatumPocetkaRada.setText("");
          txtKontakt.setText("");
-	} else         			JOptionPane.showMessageDialog(null, "Došlo je do greške, pokušajte ponovo", "Izmena nije omoguæena", JOptionPane.ERROR_MESSAGE);
+	} else         			JOptionPane.showMessageDialog(null, "Doslo je do greske, pokusajte ponovo", "Izmena nije omogucena", JOptionPane.ERROR_MESSAGE);
 	
 	
 } catch (ParseException e1) {

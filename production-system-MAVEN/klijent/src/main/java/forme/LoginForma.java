@@ -25,8 +25,9 @@ import java.awt.SystemColor;
 import javax.swing.border.EmptyBorder;
 
 /**
- *
- * @author 38169
+ *Klasa koja predstavlja GKI i sluzi za prijavu korisnika na sistem
+ *sa korisnickim imenom i lozinkom. Nasledjuje {@link javax.swing.JFrame }.
+ * @author Mirjana Dimitrijevic
  */
 public class LoginForma extends javax.swing.JFrame {
 
@@ -60,7 +61,7 @@ public class LoginForma extends javax.swing.JFrame {
         		ServerskiOdgovor so= Komunikacija.getInstance().primiOdgovor();
         		Korisnik korisnik= (Korisnik) so.getOdgovor();
         		if(korisnik==null) 
-        			JOptionPane.showMessageDialog(null, "Pogrešno korisnièko ime ili lozinka, pokušajte ponovo.", "Netaèni kredencijali", JOptionPane.ERROR_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Pogresno korisnicko ime ili lozinka, pokusajte ponovo.", "Netacni kredencijali", JOptionPane.ERROR_MESSAGE);
         	 else {
         		KlijentForma kf= new KlijentForma();
         		kf.setKorisnik(korisnik);

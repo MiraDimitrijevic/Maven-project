@@ -19,9 +19,12 @@ import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+
 /**
- *
- * @author 38169
+ *Klasa koja predstavlja GKI i sluzi za prikaz svih materijala koji su
+ *uneti u sistem, kao i za unos novog materijala.
+ *. Nasledjuje {@link javax.swing.JFrame }.
+ * @author Mirjana Dimitrijevic
  */
 public class MaterijalForma extends javax.swing.JFrame {
 
@@ -35,7 +38,10 @@ public class MaterijalForma extends javax.swing.JFrame {
         tblMaterijali.setModel(new ModelTabeleMaterijal());
         popuniTabelu();
     }
-
+/**
+ * Metoda koja popunjava tabelu koja se nalazi na formi sa
+ * podacima o svim materijalima koji se nalaze u bazi podataka.
+ */
     private void popuniTabelu() {
 		ModelTabeleMaterijal mtm= (ModelTabeleMaterijal) tblMaterijali.getModel();
 	KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.PRIKAZI_SVE_MATERIJALE, null);
@@ -76,7 +82,7 @@ public class MaterijalForma extends javax.swing.JFrame {
         		String opis= txtOpis.getText();
         		if(naziv.isEmpty() || opis.isEmpty() || txtKolicina.getText().isEmpty())
         		{
-        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Èuvanje nije omoguæeno", JOptionPane.WARNING_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Cuvanje nije omoguceno", JOptionPane.WARNING_MESSAGE);
         		return;
         		}
         		double kolicina= Double.valueOf(txtKolicina.getText().replace(',', '.'));
@@ -86,9 +92,9 @@ public class MaterijalForma extends javax.swing.JFrame {
         		Komunikacija.getInstance().posaljiZahtev(kz);
         		ServerskiOdgovor so= Komunikacija.getInstance().primiOdgovor();
         		if((Boolean) so.getOdgovor()) {
-        			JOptionPane.showMessageDialog(null, "Materijal je uspešno saèuvan", "Èuvanje uspešno", JOptionPane.INFORMATION_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Materijal je uspesno sacuvan", "Cuvanje uspesno", JOptionPane.INFORMATION_MESSAGE);
 
-        		} else         			JOptionPane.showMessageDialog(null, "Došlo je do greške, pokušajte ponovo", "Èuvanje nije omoguæeno", JOptionPane.ERROR_MESSAGE);
+        		} else         			JOptionPane.showMessageDialog(null, "Doslo je do greske, pokusajte ponovo", "Cuvanje nije omoguceno", JOptionPane.ERROR_MESSAGE);
 
         	}
         });
@@ -105,7 +111,7 @@ public class MaterijalForma extends javax.swing.JFrame {
 
         jLabel3.setText("Opis materijala:");
 
-        jLabel4.setText(" Kolièina na stanju:");
+        jLabel4.setText(" Kolicina na stanju:");
 
         tblMaterijali.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,7 +126,7 @@ public class MaterijalForma extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblMaterijali);
 
-        jButton1.setText("Osveži listu materijala");
+        jButton1.setText("Osvezi listu materijala");
 
         jButton2.setText("Dodaj materijal");
 

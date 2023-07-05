@@ -2,11 +2,17 @@ package forme;
 
 import domen.Korisnik;
 
+
 /**
- *
- * @author 38169
+ *Klasa koja predstavlja GKI i pokrece se nakon prijave korisnika na sistem.
+ *Omogucava pozivanje formi za unos, brisanje, izmenu i prikaz podataka.
+ * Nasledjuje {@link javax.swing.JFrame }.
+ * @author Mirjana Dimitrijevic
  */
 public class KlijentForma extends javax.swing.JFrame {
+	/**
+	 * Ulogovani korisnik.
+	 */
 Korisnik korisnik;
     /**
      * Creates new form KlijentForma
@@ -194,7 +200,11 @@ npf.setVisible(true);
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    // End of variables declaration                   
+    // End of variables declaration 
+    /**
+     * Postavlja ulogovanog korisnika.
+     * @param korisnik2 Podaci o korisniku koji se prijavio pomocu login forme.
+     */
 	public void setKorisnik(Korisnik korisnik2) {
 korisnik= korisnik2;		
 	}

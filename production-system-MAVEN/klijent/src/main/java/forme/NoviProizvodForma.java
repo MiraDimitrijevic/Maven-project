@@ -21,12 +21,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
-
 /**
- *
- * @author 38169
+ *Klasa koja predstavlja GKI i sluzi za unos novog
+ *proizvoda u bazu podataka, kao i svih elemenata od kojih se 
+ *proizvod proizvodi.
+ *. Nasledjuje {@link javax.swing.JFrame }.
+ * @author Mirjana Dimitrijevic
  */
 public class NoviProizvodForma extends javax.swing.JFrame {
+	/**
+	 * Podaci o korisniku koji manipulise ovom formom.
+	 */
 Korisnik ulogovaniKorisnik;
     /**
      * Creates new form NoviProizvodForma
@@ -41,7 +46,10 @@ Korisnik ulogovaniKorisnik;
 
         
     }
-
+	/**
+	 * Metoda koja popunjava combobox sa podacima o svim jedinicama mere,
+	 * koji su uzeti iz baze podataka.
+	 */
     private void popuniJediniceMere() {
 		cmbJM.removeAllItems();
 		KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.PRIKAZI_SVE_JM, null);
@@ -52,7 +60,10 @@ Korisnik ulogovaniKorisnik;
 		cmbJM.addItem(jedinicaMere);
 	}
     }
-
+	/**
+	 * Metoda koja popunjava combobox sa podacima o svim materijalima,
+	 * koji su uzeti iz baze podataka.
+	 */
 	private void popuniMaterijale() {
 		cmbMaterijal.removeAllItems();
 		KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.PRIKAZI_SVE_MATERIJALE, null);
@@ -98,9 +109,9 @@ Korisnik ulogovaniKorisnik;
         		ServerskiOdgovor so= Komunikacija.getInstance().primiOdgovor();
        
         		if((Boolean) so.getOdgovor()) {
-        			JOptionPane.showMessageDialog(null, "Proizvod je uspešno saèuvan", "Èuvanje uspešno", JOptionPane.INFORMATION_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Proizvod je uspesno sacuvan", "Cuvanje uspesno", JOptionPane.INFORMATION_MESSAGE);
 
-        		} else         			JOptionPane.showMessageDialog(null, "Došlo je do greške, pokušajte ponovo", "Èuvanje nije omoguæeno", JOptionPane.ERROR_MESSAGE);
+        		} else         			JOptionPane.showMessageDialog(null, "Doslo je do greske, pokusajte ponovo", "Cuvanje nije omoguceno", JOptionPane.ERROR_MESSAGE);
 
         	}
         });
@@ -133,7 +144,7 @@ Korisnik ulogovaniKorisnik;
         jButton3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if(txtKolMat.getText().isEmpty()) {
-        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Dodavanje materijala nije omoguæeno", JOptionPane.WARNING_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Dodavanje materijala nije omoguceno", JOptionPane.WARNING_MESSAGE);
         		return;
         		}
         	JedinicaMere jm= (JedinicaMere) cmbJM.getSelectedItem();
@@ -157,13 +168,13 @@ Korisnik ulogovaniKorisnik;
 
         jLabel2.setText("Opis proizvoda:");
 
-        jLabel3.setText(" Kolièina na stanju:");
+        jLabel3.setText(" Kolicina na stanju:");
 
         jLabel4.setText(" Patent:");
 
         jLabel5.setText("Vreme trajanja (u mesecima):");
 
-        jButton1.setText("Saèuvaj proizvod");
+        jButton1.setText("Sacuvaj proizvod");
 
         txtOpis.setColumns(20);
         txtOpis.setRows(5);
@@ -184,7 +195,7 @@ Korisnik ulogovaniKorisnik;
 
         jLabel8.setText("Jedinica mere:");
 
-        jLabel9.setText("Kolièina materijala za proizvod:");
+        jLabel9.setText("Kolicina materijala za proizvod:");
 
         txtKolMat.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
@@ -201,7 +212,7 @@ Korisnik ulogovaniKorisnik;
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jButton2.setText("Obriši izabrani materijal ");
+        jButton2.setText("Obrisi izabrani materijal ");
 
         jButton3.setText("Dodaj materijal u sastavnicu:");
 
@@ -389,7 +400,11 @@ Korisnik ulogovaniKorisnik;
     private javax.swing.JTextField txtNaziv;
     private javax.swing.JTextArea txtOpis;
     private javax.swing.JFormattedTextField txtVremeTrajnja;
-    // End of variables declaration                   
+    // End of variables declaration    
+    /**
+     * Metoda koja postavlja podatke o ulogovanom korisniku.
+     * @param korisnik Ulogovani korisnik.
+     */
 	public void setKorisnik(Korisnik korisnik) {
 		ulogovaniKorisnik=korisnik;
 	}

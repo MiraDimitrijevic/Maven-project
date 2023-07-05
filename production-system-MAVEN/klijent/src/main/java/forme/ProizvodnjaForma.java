@@ -1,6 +1,4 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package forme;
 
@@ -28,10 +26,16 @@ import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
 /**
- *
- * @author 38169
+ *Klasa koja predstavlja GKI i sluzi za unos nove
+ *proizvodnje u bazu podataka, kao i svih elemenata koji ce
+ *se u toj seriji proizvoditi.
+ *. Nasledjuje {@link javax.swing.JFrame }.
+ * @author Mirjana Dimitrijevic
  */
 public class ProizvodnjaForma extends javax.swing.JFrame {
+	/**
+	 * Korisnik koji manipulise formom.
+	 */
 Korisnik kor;
     /**
      * Creates new form ProizvodnjaForma
@@ -46,7 +50,10 @@ Korisnik kor;
         jTable1.setModel(new ModelTabeleElementProizvodnje());
         
     }
-
+	/**
+	 * Metoda koja popunjava combobox sa podacima o svim pogonima,
+	 * koji su uzeti iz baze podataka.
+	 */
     private void popuniPogone() {
     	cmbPogon.removeAllItems();
 		KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.PRIKAZI_SVE_POGONE, null);
@@ -57,7 +64,10 @@ Korisnik kor;
 			cmbPogon.addItem(pogon);
 		}
 	}
-
+	/**
+	 * Metoda koja popunjava combobox sa podacima o svim jedinicama mere,
+	 * koji su uzeti iz baze podataka.
+	 */
 	private void popuniJediniceMere() {
     	cmbJM.removeAllItems();
 		KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.PRIKAZI_SVE_JM, null);
@@ -68,7 +78,10 @@ Korisnik kor;
 		cmbJM.addItem(jedinicaMere);
 	}		
 	}
-
+	/**
+	 * Metoda koja popunjava combobox sa podacima o svim proizvodima,
+	 * koji su uzeti iz baze podataka.
+	 */
 	private void popuniProizvode() {
 		cmbProizvod.removeAllItems();
 		KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.PRIKAZI_SVE_PROIZVODE, null);
@@ -105,7 +118,7 @@ Korisnik kor;
         jButton1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		if(txtKolPro.getText().isEmpty()) {
-        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Dodavanje materijala nije omoguæeno", JOptionPane.WARNING_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Dodavanje materijala nije omoguceno", JOptionPane.WARNING_MESSAGE);
         		return;
         		}
         	JedinicaMere jm= (JedinicaMere) cmbJM.getSelectedItem();
@@ -136,7 +149,7 @@ Korisnik kor;
         		SimpleDateFormat sdf= new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         		try {
         			if(txtDVpoc.getText().isEmpty() || txtDVzav.getText().isEmpty()) {
-        				JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Èuvanje nije omoguæeno", JOptionPane.WARNING_MESSAGE);
+        				JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Cuvanje nije omoguceno", JOptionPane.WARNING_MESSAGE);
                 		return;
         			}
 					Date datumVremePoc= sdf.parse(txtDVpoc.getText());
@@ -148,9 +161,9 @@ Korisnik kor;
 					Komunikacija.getInstance().posaljiZahtev(kz);
 					ServerskiOdgovor so=Komunikacija.getInstance().primiOdgovor();
 					if((Boolean) so.getOdgovor()) {
-	        			JOptionPane.showMessageDialog(null, "Proizvodnja je uspešno saèuvana", "Èuvanje uspešno", JOptionPane.INFORMATION_MESSAGE);
+	        			JOptionPane.showMessageDialog(null, "Proizvodnja je uspesno sacuvana", "Cuvanje uspesno", JOptionPane.INFORMATION_MESSAGE);
 
-	        		} else         			JOptionPane.showMessageDialog(null, "Došlo je do greške, pokušajte ponovo", "Èuvanje nije omoguæeno", JOptionPane.ERROR_MESSAGE);
+	        		} else         			JOptionPane.showMessageDialog(null, "Doslo je do greske, pokusajte ponovo", "Cuvanje nije omoguceno", JOptionPane.ERROR_MESSAGE);
 
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
@@ -165,7 +178,7 @@ Korisnik kor;
 
         jLabel2.setText("Jedinica mere:");
 
-        jLabel3.setText("Kolièina:");
+        jLabel3.setText("Kolicina:");
 
         txtKolPro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
@@ -173,9 +186,9 @@ Korisnik kor;
 
         cmbJM.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel4.setText("Datum i vreme poèetka proizvodnje:");
+        jLabel4.setText("Datum i vreme pocetka proizvodnje:");
 
-        jLabel5.setText("Datum i vreme završetka proizvodnje:");
+        jLabel5.setText("Datum i vreme zavrsetka proizvodnje:");
 
         txtDVpoc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm:ss"))));
 
@@ -200,9 +213,9 @@ Korisnik kor;
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton2.setText("Izbriši proizvod");
+        jButton2.setText("Izbrisi proizvod");
 
-        jButton3.setText("Saèuvaj proizvodnju");
+        jButton3.setText("Sacuvaj proizvodnju");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -357,9 +370,12 @@ Korisnik kor;
     private javax.swing.JFormattedTextField txtDVpoc;
     private javax.swing.JFormattedTextField txtDVzav;
     private javax.swing.JFormattedTextField txtKolPro;
-    // End of variables declaration                   
+    // End of variables declaration     
+    /**
+     * Metoda koja postavlja podatke o ulogovanom korisniku.
+     * @param korisnik Ulogovani korisnik.
+     */
 	public void setKorisnik(Korisnik korisnik) {
-		if(korisnik ==null) jLabel1.setText("null");
 this.kor=korisnik;		
 	}
 }

@@ -19,9 +19,11 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 
+
 /**
- *
- * @author 38169
+ *Klasa koja predstavlja GKI i sluzi za registraciju korisnika na sistem
+ *unosom odgovarajucih podataka. Nasledjuje {@link javax.swing.JFrame }.
+ * @author Mirjana Dimitrijevic
  */
 public class RegistracijaForma extends javax.swing.JFrame {
 
@@ -60,7 +62,7 @@ public class RegistracijaForma extends javax.swing.JFrame {
         		String rm= txtRadnoMesto.getText();
         		if(imePrezime.isEmpty() || korisnickoIme.isEmpty() || lozinka.isEmpty() || rm.isEmpty())
         		{
-        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Registracija nije omoguæena", JOptionPane.WARNING_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Registracija nije omogucena", JOptionPane.WARNING_MESSAGE);
         		return;
         		}
         		Korisnik korisnik= new Korisnik(-1, imePrezime, korisnickoIme, lozinka, rm);
@@ -70,9 +72,9 @@ public class RegistracijaForma extends javax.swing.JFrame {
         		ServerskiOdgovor so= Komunikacija.getInstance().primiOdgovor();
         		boolean uspesno= (Boolean) so.getOdgovor();
         		
-        		if(uspesno) JOptionPane.showMessageDialog(null, "Uspešna registracija!", "Registracija", JOptionPane.INFORMATION_MESSAGE);
+        		if(uspesno) JOptionPane.showMessageDialog(null, "Uspesna registracija!", "Registracija", JOptionPane.INFORMATION_MESSAGE);
         		else {
-        			 JOptionPane.showMessageDialog(null, "Korisnièko ime je zauzeto, pokušajte da se registrujete sa drugim!", "Registracija", JOptionPane.ERROR_MESSAGE);	
+        			 JOptionPane.showMessageDialog(null, "Korisnicko ime je zauzeto, pokusajte da se registrujete sa drugim!", "Registracija", JOptionPane.ERROR_MESSAGE);	
         		}
         	}
         });
@@ -90,7 +92,7 @@ public class RegistracijaForma extends javax.swing.JFrame {
 
         jLabel1.setText("Ime i prezime:");
 
-        jLabel2.setText("Korisnièko ime:");
+        jLabel2.setText("Korisnicko ime:");
 
         jLabel3.setText("Lozinka:");
 

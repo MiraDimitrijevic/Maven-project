@@ -21,8 +21,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
- *
- * @author 38169
+ *Klasa koja predstavlja GKI i sluzi za prikaz svih
+ *proizvoda iz baze podataka, kao i brisanje izabranog proizvoda.
+ *. Nasledjuje {@link javax.swing.JFrame }.
+ * @author Mirjana Dimitrijevic
  */
 public class ProizvodiForma extends javax.swing.JFrame {
 
@@ -36,7 +38,10 @@ public class ProizvodiForma extends javax.swing.JFrame {
         tblProizvodi.setModel(new ModelTabeleProizvod());
         popuniTabelu();
     }
-
+	/**
+	 * Metoda koja popunjava tabelu sa podacima o svim proizvodima,
+	 * koji su uzeti iz baze podataka.
+	 */
     private void popuniTabelu() {
 		ModelTabeleProizvod mtp= (ModelTabeleProizvod) tblProizvodi.getModel();
 		KlijentskiZahtev kz= new KlijentskiZahtev(Operacije.PRIKAZI_SVE_PROIZVODE, null);
@@ -76,9 +81,9 @@ public class ProizvodiForma extends javax.swing.JFrame {
         		Komunikacija.getInstance().posaljiZahtev(kz);
         		ServerskiOdgovor so= Komunikacija.getInstance().primiOdgovor();
         		if((Boolean) so.getOdgovor()) {
-        			JOptionPane.showMessageDialog(null, "Proizvod je uspešno obrisan", "Brisanje uspešno", JOptionPane.INFORMATION_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "Proizvod je uspesno obrisan", "Brisanje uspesno", JOptionPane.INFORMATION_MESSAGE);
                      popuniTabelu();
-        		} else         			JOptionPane.showMessageDialog(null, "Došlo je do greške, pokušajte ponovo", "Brisanje nije omoguæeno", JOptionPane.ERROR_MESSAGE);
+        		} else         			JOptionPane.showMessageDialog(null, "Doslo je do greske, pokusajte ponovo", "Brisanje nije omoguceno", JOptionPane.ERROR_MESSAGE);
         		
         		}
         	}
@@ -101,9 +106,9 @@ public class ProizvodiForma extends javax.swing.JFrame {
 
         jLabel1.setText("Lista proizvoda:");
 
-        jButton1.setText("Osveži listu");
+        jButton1.setText("Osvezi listu");
 
-        jButton2.setText("Izbriši izabrani proizvod");
+        jButton2.setText("Izbrisi izabrani proizvod");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(

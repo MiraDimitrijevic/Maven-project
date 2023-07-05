@@ -8,7 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import niti.PokreniServer;
-
+/**
+ * Klasa ServerForm pokrece serversku aplikaciju i nit PokreniServer
+ * koja omogucava kijentima da uspostave komunikaciju.
+ * @author Mirjana Dimitrijevic
+ *
+ */
 public class ServerForm extends JFrame {
 
 	private JPanel contentPane;
@@ -16,7 +21,7 @@ public class ServerForm extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

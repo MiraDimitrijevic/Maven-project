@@ -71,6 +71,8 @@ public Proizvodnja getProizvodnja() {
  * @param proizvodnja Proizvodnja na koju se element odnosi.
  */
 public void setProizvodnja(Proizvodnja proizvodnja) {
+	if(proizvodnja==null) throw new NullPointerException("Proizvodnja ne sme biti null");
+
 	this.proizvodnja = proizvodnja;
 }
 /**
@@ -85,6 +87,7 @@ public long getRbr() {
  * @param rbr Redni broj elementa specificirane proizvodnje.
  */
 public void setRbr(long rbr) {
+    if(rbr<=0) throw new IllegalArgumentException("Kao redni broj moze se dodeliti samo pozitivan ceo broj.");
 	this.rbr = rbr;
 }
 /**
@@ -99,6 +102,8 @@ public Proizvod getProizvod() {
  * @param proizvod Proizvod na koji se element odnosi.
  */
 public void setProizvod(Proizvod proizvod) {
+	if(proizvod==null) throw new NullPointerException("Proizvod ne sme biti null");
+
 	this.proizvod = proizvod;
 }
 /**
@@ -113,6 +118,8 @@ public JedinicaMere getJedinicaMere() {
  * @param jedinicaMere Jedinica mere u kojoj je izrazena kolicina proizvoda.
  */
 public void setJedinicaMere(JedinicaMere jedinicaMere) {
+	if(jedinicaMere==null) throw new NullPointerException("Jedinica mere ne sme biti null");
+
 	this.jedinicaMere = jedinicaMere;
 }
 /**
@@ -127,6 +134,7 @@ public double getKolicina() {
  * @param kolicina Kolicina proizvoda.
  */
 public void setKolicina(double kolicina) {
+    if(kolicina<0) throw new IllegalArgumentException("Kolicina ne moze biti manja od 0.");
 	this.kolicina = kolicina;
 }
 

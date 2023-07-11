@@ -48,6 +48,7 @@ public long getJMID() {
  * @param jMID Jedinstveni identifikator jedinice mere.
  */
 public void setJMID(long jMID) {
+    if(jMID<=0) throw new IllegalArgumentException("Kao ID moze se dodeliti samo pozitivan ceo broj.");
 	JMID = jMID;
 }
 /**
@@ -62,6 +63,9 @@ public String getNazivJM() {
  * @param nazivJM Tip jedinice mere.
  */
 public void setNazivJM(String nazivJM) {
+	 if(nazivJM==null) throw new NullPointerException("Naziv jedinice mere ne sme biti null");
+	    if(nazivJM.isEmpty()) throw new IllegalArgumentException("Naziv jedinice mere ne sme biti prazan");
+
 	this.nazivJM = nazivJM;
 }
 

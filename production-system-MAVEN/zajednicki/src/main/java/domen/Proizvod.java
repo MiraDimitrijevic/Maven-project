@@ -112,6 +112,7 @@ public long getProizvodID() {
  * @param proizvodID Jedinstveni identifikator proizvoda.
  */
 public void setProizvodID(long proizvodID) {
+    if(proizvodID<=0) throw new IllegalArgumentException("Kao ID moze se dodeliti samo pozitivan ceo broj.");
 	this.proizvodID = proizvodID;
 }
 /**
@@ -126,6 +127,8 @@ public String getNazivProizvoda() {
  * @param nazivProizvoda Naziv proizvoda.
  */
 public void setNazivProizvoda(String nazivProizvoda) {
+	if(nazivProizvoda==null) throw new NullPointerException("Naziv proizvoda ne sme biti null");
+    if(nazivProizvoda.isEmpty()) throw new IllegalArgumentException("Naziv proizvoda ne sme biti prazan");
 	this.nazivProizvoda = nazivProizvoda;
 }
 /**
@@ -140,6 +143,8 @@ public String getOpisProizvoda() {
  * @param opisProizvoda Opis proizvoda.
  */
 public void setOpisProizvoda(String opisProizvoda) {
+	if(opisProizvoda==null) throw new NullPointerException("Opis proizvoda ne sme biti null");
+    if(opisProizvoda.isEmpty()) throw new IllegalArgumentException("Opis proizvoda ne sme biti prazno");
 	this.opisProizvoda = opisProizvoda;
 }
 /**
@@ -154,6 +159,8 @@ public double getKolicinaNaStanju() {
  * @param kolicinaNaStanju Kolicina proizvoda na stanju.
  */
 public void setKolicinaNaStanju(double kolicinaNaStanju) {
+    if(kolicinaNaStanju<0) throw new IllegalArgumentException("Kolicina ne moze biti manja od 0.");
+
 	this.kolicinaNaStanju = kolicinaNaStanju;
 }
 /**
@@ -184,6 +191,8 @@ public int getVekTrajanjaUMesecima() {
  * @param vekTrajanjaUMesecima Vek trajanja proizvoda izrazen u mesecima.
  */
 public void setVekTrajanjaUMesecima(int vekTrajanjaUMesecima) {
+    if(vekTrajanjaUMesecima<=0) throw new IllegalArgumentException("Vek trajanja ne moze biti kraci od 1 meseca.");
+
 	this.vekTrajanjaUMesecima = vekTrajanjaUMesecima;
 }
 /**
@@ -198,6 +207,8 @@ public Date getDatumPocetkaProizvodnje() {
  * @param datumPocetkaProizvodnje Datum pocetka proizvodnje proizvoda.
  */
 public void setDatumPocetkaProizvodnje(Date datumPocetkaProizvodnje) {
+	if(datumPocetkaProizvodnje==null) throw new NullPointerException("Datum pocetka proizvodnje proizvoda ne sme biti null");
+    if(datumPocetkaProizvodnje.after(new Date())) throw new IllegalArgumentException("Datum pocetka proizvodnje proizvoda ne moze biti posle danasnjeg datuma");
 	this.datumPocetkaProizvodnje = datumPocetkaProizvodnje;
 }
 /**
@@ -212,6 +223,8 @@ public Korisnik getKorisnik() {
  * @param korisnik Korisnik koji je uneo proizvod u sistem.
  */
 public void setKorisnik(Korisnik korisnik) {
+	if(korisnik==null) throw new NullPointerException("Korisnik ne sme biti null");
+
 	this.korisnik = korisnik;
 }
 /**
@@ -226,6 +239,8 @@ public ArrayList<ElementProizvoda> getSastavnica() {
  * @param sastavnica Lista elemenata proizvoda potrebnih za njegovu proizvodnju.
  */
 public void setSastavnica(ArrayList<ElementProizvoda> sastavnica) {
+	if(sastavnica==null) throw new NullPointerException("Lista elemenata proizvoda ne sme biti null");
+    if(sastavnica.size()==0) throw new IllegalArgumentException("Lista elemenata proizvoda ne moze biti prazna");
 	this.sastavnica = sastavnica;
 }
 

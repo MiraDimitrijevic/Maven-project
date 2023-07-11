@@ -82,6 +82,8 @@ public long getProizvodnjaID() {
  * @param proizvodnjaID Jedinstveni identifikator proizvodnje.
  */
 public void setProizvodnjaID(long proizvodnjaID) {
+    if(proizvodnjaID<=0) throw new IllegalArgumentException("Kao ID moze se dodeliti samo pozitivan ceo broj.");
+
 	this.proizvodnjaID = proizvodnjaID;
 }
 /**
@@ -96,6 +98,8 @@ public Date getDatumVremePocetka() {
  * @param datumVremePocetka Datum i vreme pocetka proizvodnje.
  */
 public void setDatumVremePocetka(Date datumVremePocetka) {
+	if(datumVremePocetka==null) throw new NullPointerException("Datum i vreme pocetka proizvodnje ne sme biti null");
+    if(datumVremePocetka.after(new Date())) throw new IllegalArgumentException("Datum i vreme pocetka proizvodnje ne moze biti posle danasnjeg datuma");
 	this.datumVremePocetka = datumVremePocetka;
 }
 /**
@@ -110,6 +114,8 @@ public Date getDatumVremeZavrsetka() {
  * @param datumVremeZavrsetka Datum i vreme zavrsetka proizvodnje.
  */
 public void setDatumVremeZavrsetka(Date datumVremeZavrsetka) {
+	if(datumVremeZavrsetka==null) throw new NullPointerException("Datum i vreme zavrsetka proizvodnje ne sme biti null");
+    if(datumVremeZavrsetka.before(datumVremePocetka)) throw new IllegalArgumentException("Datum i vreme zavrsetka proizvodnje ne moze biti pre datuma i vremena pocetka proizvodnje");
 	this.datumVremeZavrsetka = datumVremeZavrsetka;
 }
 /**
@@ -124,6 +130,8 @@ public Pogon getPogon() {
  * @param pogon Pogon u kom se proizvodnja odvijala.
  */
 public void setPogon(Pogon pogon) {
+	if(pogon==null) throw new NullPointerException("Pogon ne sme biti null");
+
 	this.pogon = pogon;
 }
 /**
@@ -138,6 +146,8 @@ public Korisnik getKorisnik() {
  * @param korisnik Korisnik koji je proizvodnju zabelezio u sistemu.
  */
 public void setKorisnik(Korisnik korisnik) {
+	if(korisnik==null) throw new NullPointerException("Korisnik ne sme biti null");
+
 	this.korisnik = korisnik;
 }
 /**
@@ -152,6 +162,8 @@ public ArrayList<ElementProizvodnje> getIzlazi() {
  * @param izlazi Lista elemenata koji predstavljaju izlaz procesa proizvodnje.
  */
 public void setIzlazi(ArrayList<ElementProizvodnje> izlazi) {
+	if(izlazi==null) throw new NullPointerException("Lista elemenata proizvodnje ne sme biti null");
+    if(izlazi.size()==0) throw new IllegalArgumentException("Lista elemenata proizvodnje ne moze biti prazna");
 	this.izlazi = izlazi;
 }
 

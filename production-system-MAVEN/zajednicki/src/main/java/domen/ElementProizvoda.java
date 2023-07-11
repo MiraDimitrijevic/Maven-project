@@ -26,6 +26,8 @@ public Proizvod getProizvod() {
 }
 
 public void setProizvod(Proizvod proizvod) {
+	if(proizvod==null) throw new NullPointerException("Proizvod ne sme biti null");
+
 	this.proizvod = proizvod;
 }
 
@@ -34,6 +36,7 @@ public long getRbr() {
 }
 
 public void setRbr(long rbr) {
+    if(rbr<=0) throw new IllegalArgumentException("Kao redni broj moze se dodeliti samo pozitivan ceo broj.");
 	this.rbr = rbr;
 }
 
@@ -42,6 +45,8 @@ public Materijal getMaterijal() {
 }
 
 public void setMaterijal(Materijal materijal) {
+	if(materijal==null) throw new NullPointerException("Materijal ne sme biti null");
+
 	this.materijal = materijal;
 }
 
@@ -50,6 +55,8 @@ public JedinicaMere getJedinicaMere() {
 }
 
 public void setJedinicaMere(JedinicaMere jedinicaMere) {
+	if(jedinicaMere==null) throw new NullPointerException("Jedinica mere ne sme biti null");
+
 	this.jedinicaMere = jedinicaMere;
 }
 
@@ -58,6 +65,7 @@ public double getKolicina() {
 }
 
 public void setKolicina(double kolicina) {
+    if(kolicina<0) throw new IllegalArgumentException("Kolicina ne moze biti manja od 0.");
 	this.kolicina = kolicina;
 }
 

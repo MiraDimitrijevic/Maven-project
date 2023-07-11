@@ -20,6 +20,7 @@ public long getPogonID() {
 }
 
 public void setPogonID(long pogonID) {
+    if(pogonID<=0) throw new IllegalArgumentException("Kao ID moze se dodeliti samo pozitivan ceo broj.");
 	this.pogonID = pogonID;
 }
 
@@ -28,6 +29,8 @@ public Date getDatumPocetkaRada() {
 }
 
 public void setDatumPocetkaRada(Date datumPocetkaRada) {
+	if(datumPocetkaRada==null) throw new NullPointerException("Datum pocetka rada pogona ne sme biti null");
+    if(datumPocetkaRada.after(new Date())) throw new IllegalArgumentException("Datum pocetka rada pogona ne moze biti posle danasnjeg datuma");
 	this.datumPocetkaRada = datumPocetkaRada;
 }
 
@@ -36,6 +39,8 @@ public Grad getGrad() {
 }
 
 public void setGrad(Grad grad) {
+	if(grad==null) throw new NullPointerException("Grad ne sme biti null");
+
 	this.grad = grad;
 }
 
@@ -44,6 +49,8 @@ public String getAdresa() {
 }
 
 public void setAdresa(String adresa) {
+	if(adresa==null) throw new NullPointerException("Adresa pogona ne sme biti null");
+    if(adresa.isEmpty()) throw new IllegalArgumentException("Adresa pogona ne sme biti prazna");
 	this.adresa = adresa;
 }
 
@@ -52,7 +59,10 @@ public String getKontakt() {
 }
 
 public void setKontakt(String kontakt) {
-	this.kontakt = kontakt;
+	if(kontakt==null) throw new NullPointerException("Kontakt pogona ne sme biti null");
+	
+    if(kontakt.isEmpty()) throw new IllegalArgumentException("Kontakt pogona ne sme biti prazan");
+    this.kontakt = kontakt;
 }
 
 public boolean isAktivan() {
@@ -68,6 +78,8 @@ public Korisnik getKorisnik() {
 }
 
 public void setKorisnik(Korisnik korisnik) {
+	if(korisnik==null) throw new NullPointerException("Korisnik ne sme biti null");
+
 	this.korisnik = korisnik;
 }
 

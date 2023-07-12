@@ -69,6 +69,7 @@ public long getMaterijalID() {
 /**
  * Postavlja jedinstveni identifikator materijala.
  * @param materijalID Jedinstveni identifikator materijala.
+ * @throws IllegalArgumentException kada je id manji od 1.
  */
 
 public void setMaterijalID(long materijalID) {
@@ -87,6 +88,8 @@ public String getNazivMaterijala() {
 /**
  * Postavlja naziv materijala.
  * @param nazivMaterijala Naziv materijala.
+ * @throws IllegalArgumentException kada je naziv materijala prazan string.
+ * @throws NullPointerException kada je naziv materijala null.
  */
 
 public void setNazivMaterijala(String nazivMaterijala) {
@@ -105,6 +108,8 @@ public String getOpisMaterijala() {
 /**
  * Postavlja opis materijala.
  * @param opisMaterijala Opis materijala.
+ * @throws IllegalArgumentException kada je opis materijala prazan string.
+ * @throws NullPointerException kada je opis materijala null.
  */
 
 public void setOpisMaterijala(String opisMaterijala) {
@@ -123,6 +128,7 @@ public double getKolicinaNaStanju() {
 /**
  * Postavlja kolicinu materijala koja se nalazi na stanju u magacinu.
  * @param kolicinaNaStanju Kolicina materijala na stanju.
+ * @throws IllegalArgumentException kada je kolicina manja od 0.
  */
 public void setKolicinaNaStanju(double kolicinaNaStanju) {
     if(kolicinaNaStanju<0) throw new IllegalArgumentException("Kolicina ne moze biti manja od 0.");

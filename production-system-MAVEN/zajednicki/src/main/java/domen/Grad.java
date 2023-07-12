@@ -46,6 +46,7 @@ public long getGradID() {
 /**
  * Postavlja jedinstveni identifikator grada.
  * @param gradID Jedinstveni identifikator grada.
+ * @throws IllegalArgumentException kada je id manji od 1.
  */
 public void setGradID(long gradID) {
      if(gradID<=0) throw new IllegalArgumentException("Kao ID moze se dodeliti samo pozitivan ceo broj.");
@@ -61,6 +62,9 @@ public String getNazivGrada() {
 /**
  * Postavlja naziv grada.
  * @param nazivGrada Naziv grada.
+ * @throws IllegalArgumentException kada je naziv grada prazan string.
+ * @throws NullPointerException kada je naziv grada null.
+
  */
 public void setNazivGrada(String nazivGrada) {
     if(nazivGrada==null) throw new NullPointerException("Naziv grada ne sme biti null");

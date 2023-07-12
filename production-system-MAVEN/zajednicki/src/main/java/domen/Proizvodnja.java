@@ -80,6 +80,8 @@ public long getProizvodnjaID() {
 /**
  * Postavlja jedinstveni identifikator proizvodnje.
  * @param proizvodnjaID Jedinstveni identifikator proizvodnje.
+ * @throws IllegalArgumentException kada je id manji od 1.
+
  */
 public void setProizvodnjaID(long proizvodnjaID) {
     if(proizvodnjaID<=0) throw new IllegalArgumentException("Kao ID moze se dodeliti samo pozitivan ceo broj.");
@@ -96,6 +98,8 @@ public Date getDatumVremePocetka() {
 /**
  * Postavlja datum i vreme pocetka proizvodnje.
  * @param datumVremePocetka Datum i vreme pocetka proizvodnje.
+ * @throws IllegalArgumentException kada je datum pocetka proizvodnje datum kasniji u odnosu na danasnji datum.
+ * @throws NullPointerException kada je datum pocetka proizvodnje null.
  */
 public void setDatumVremePocetka(Date datumVremePocetka) {
 	if(datumVremePocetka==null) throw new NullPointerException("Datum i vreme pocetka proizvodnje ne sme biti null");
@@ -112,6 +116,8 @@ public Date getDatumVremeZavrsetka() {
 /**
  * Postavlja datum i vreme zavrsetka proizvodnje.
  * @param datumVremeZavrsetka Datum i vreme zavrsetka proizvodnje.
+ * @throws IllegalArgumentException kada je datum zavrsetka proizvodnje datum pre datuma pocetka proizvodnje.
+ * @throws NullPointerException kada je datum zavrsetka proizvodnje null.
  */
 public void setDatumVremeZavrsetka(Date datumVremeZavrsetka) {
 	if(datumVremeZavrsetka==null) throw new NullPointerException("Datum i vreme zavrsetka proizvodnje ne sme biti null");
@@ -128,6 +134,8 @@ public Pogon getPogon() {
 /**
  * Postavlja pogon u kom se proizvodnja odvija.
  * @param pogon Pogon u kom se proizvodnja odvijala.
+ * @throws NullPointerException kada je pogon u kome se odvija proizvodnja null.
+
  */
 public void setPogon(Pogon pogon) {
 	if(pogon==null) throw new NullPointerException("Pogon ne sme biti null");
@@ -144,6 +152,8 @@ public Korisnik getKorisnik() {
 /**
  * Postavlja korisnika koji je proizvodnju zabelezio u sistemu.
  * @param korisnik Korisnik koji je proizvodnju zabelezio u sistemu.
+ * @throws NullPointerException kada je korisnik koji unosi proizvodnju u sistem null.
+
  */
 public void setKorisnik(Korisnik korisnik) {
 	if(korisnik==null) throw new NullPointerException("Korisnik ne sme biti null");
@@ -160,6 +170,8 @@ public ArrayList<ElementProizvodnje> getIzlazi() {
 /**
  * Postavlja listu elemenata koji su izlaz procesa ove proizvodnje.
  * @param izlazi Lista elemenata koji predstavljaju izlaz procesa proizvodnje.
+ * @throws IllegalArgumentException kada je lista elemenata proizvodnje prazna.
+ * @throws NullPointerException kada je lista elemenata proizvodnje null.
  */
 public void setIzlazi(ArrayList<ElementProizvodnje> izlazi) {
 	if(izlazi==null) throw new NullPointerException("Lista elemenata proizvodnje ne sme biti null");

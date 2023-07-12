@@ -66,6 +66,8 @@ public Proizvod getProizvod() {
 /**
  * Postavlja proizvod ciji je objekat element.
  * @param proizvod Proizvod na koji se element odnosi.
+ * @throws NullPointerException kada je proizvod na koji se element odnosi null.
+
  */
 public void setProizvod(Proizvod proizvod) {
 	if(proizvod==null) throw new NullPointerException("Proizvod ne sme biti null");
@@ -82,6 +84,8 @@ public long getRbr() {
 /**
  * Postavlja redni broj elementa u sastavnici proizvoda.
  * @param rbr Redni broj elementa specificiranog proizvoda.
+ * @throws IllegalArgumentException kada je redni broj elementa manji od 1.
+
  */
 public void setRbr(long rbr) {
     if(rbr<=0) throw new IllegalArgumentException("Kao redni broj moze se dodeliti samo pozitivan ceo broj.");
@@ -90,6 +94,7 @@ public void setRbr(long rbr) {
 /**
  * Vraca materijal na koji se element proizvoda odnosi.
  * @return Materijal elementa proizvoda.
+
  */
 public Materijal getMaterijal() {
 	return materijal;
@@ -97,6 +102,8 @@ public Materijal getMaterijal() {
 /**
  * Postavlja materijal na koji se element proizvoda odnosi.
  * @param materijal Materijal elementa proizvoda.
+ *  @throws NullPointerException kada je materijal na koji se element odnosi null.
+
  */
 public void setMaterijal(Materijal materijal) {
 	if(materijal==null) throw new NullPointerException("Materijal ne sme biti null");
@@ -113,6 +120,8 @@ public JedinicaMere getJedinicaMere() {
 /**
  * Postavlja jedinicu mere u kojoj je izrazena kolicina materijala potrebna za proizvodnju.
  * @param jedinicaMere Jedinica mere u kojoj je izrazena kolicina materijala.
+ * @throws NullPointerException kada je jedinica mere u kojoj je izrazena kolicina elementa null.
+
  */
 public void setJedinicaMere(JedinicaMere jedinicaMere) {
 	if(jedinicaMere==null) throw new NullPointerException("Jedinica mere ne sme biti null");
@@ -129,6 +138,8 @@ public double getKolicina() {
 /**
  * Postavlja kolicinu materijala potrebnog za proizvodnju odredjenog proizvoda.
  * @param kolicina Kolicina materijala.
+ * @throws IllegalArgumentException kada je kolicina manja od 0.
+
  */
 public void setKolicina(double kolicina) {
     if(kolicina<0) throw new IllegalArgumentException("Kolicina ne moze biti manja od 0.");

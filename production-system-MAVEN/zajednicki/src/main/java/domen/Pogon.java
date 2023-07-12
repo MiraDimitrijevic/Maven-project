@@ -60,6 +60,8 @@ public long getPogonID() {
 /**
  * Postavlja jedinstveni identifikator pogona.
  * @param pogonID Jedinstveni identifikator pogona.
+ * @throws IllegalArgumentException kada je id manji od 1.
+
  */
 public void setPogonID(long pogonID) {
     if(pogonID<=0) throw new IllegalArgumentException("Kao ID moze se dodeliti samo pozitivan ceo broj.");
@@ -75,6 +77,8 @@ public Date getDatumPocetkaRada() {
 /**
  * Postavlja datum pocetka rada pogona.
  * @param datumPocetkaRada Datum pocetka rada pogona.
+ * @throws IllegalArgumentException kada je datum pocetka rada pogona datum kasniji u odnosu na danasnji.
+ * @throws NullPointerException kada je datum pocetka rada pogona null.
  */
 public void setDatumPocetkaRada(Date datumPocetkaRada) {
 	if(datumPocetkaRada==null) throw new NullPointerException("Datum pocetka rada pogona ne sme biti null");
@@ -91,6 +95,9 @@ public Grad getGrad() {
 /**
  * Postavlja grad u kom je pogon otvoren.
  * @param grad Grad u kom je pogon otvoren.
+ * @throws NullPointerException kada je grad u kom se nalazi pogon null.
+
+ * 
  */
 public void setGrad(Grad grad) {
 	if(grad==null) throw new NullPointerException("Grad ne sme biti null");
@@ -107,6 +114,8 @@ public String getAdresa() {
 /**
  * Postavlja adresu na kojoj se pogon nalazi.
  * @param adresa Adresa na kojoj se pogon nalazi.
+ * @throws IllegalArgumentException kada je adresa pogona prazan string.
+ * @throws NullPointerException kada je adresa pogona null.
  */
 public void setAdresa(String adresa) {
 	if(adresa==null) throw new NullPointerException("Adresa pogona ne sme biti null");
@@ -123,6 +132,8 @@ public String getKontakt() {
 /**
  * Postavlja kontakt telefon pogona.
  * @param kontakt Telefon za kontaktiranje pogona.
+ * @throws IllegalArgumentException kada je kontakt pogona prazan string.
+ * @throws NullPointerException kada je kontakt pogona null.
  */
 public void setKontakt(String kontakt) {
 	if(kontakt==null) throw new NullPointerException("Kontakt pogona ne sme biti null");
@@ -154,6 +165,7 @@ public Korisnik getKorisnik() {
 /**
  * Postavlja informacije o Korisniku koji je nadlezan za pogon.
  * @param korisnik Informacije o nadleznom Korisniku.
+ * @throws NullPointerException kada je korisnik nadlezan za pogon null.
  */
 public void setKorisnik(Korisnik korisnik) {
 	if(korisnik==null) throw new NullPointerException("Korisnik ne sme biti null");

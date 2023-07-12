@@ -110,6 +110,8 @@ public long getProizvodID() {
 /**
  * Postavlja jedinstveni identifikator proizvoda.
  * @param proizvodID Jedinstveni identifikator proizvoda.
+ * @throws IllegalArgumentException kada je id manji od 1.
+
  */
 public void setProizvodID(long proizvodID) {
     if(proizvodID<=0) throw new IllegalArgumentException("Kao ID moze se dodeliti samo pozitivan ceo broj.");
@@ -125,6 +127,8 @@ public String getNazivProizvoda() {
 /**
  * Postavlja naziv proizvoda.
  * @param nazivProizvoda Naziv proizvoda.
+ * @throws IllegalArgumentException kada je naziv proizvoda prazan string.
+ * @throws NullPointerException kada je naziv proizvoda null.
  */
 public void setNazivProizvoda(String nazivProizvoda) {
 	if(nazivProizvoda==null) throw new NullPointerException("Naziv proizvoda ne sme biti null");
@@ -141,6 +145,8 @@ public String getOpisProizvoda() {
 /**
  * Postavlja opis proizvoda.
  * @param opisProizvoda Opis proizvoda.
+ * @throws IllegalArgumentException kada je opis proizvoda prazan string.
+ * @throws NullPointerException kada je opis proizvoda null.
  */
 public void setOpisProizvoda(String opisProizvoda) {
 	if(opisProizvoda==null) throw new NullPointerException("Opis proizvoda ne sme biti null");
@@ -157,6 +163,8 @@ public double getKolicinaNaStanju() {
 /**
  * Postavlja kolicinu proizvoda koja se nalazi na skladistu.
  * @param kolicinaNaStanju Kolicina proizvoda na stanju.
+ * @throws IllegalArgumentException kada je kolicina manja od 0.
+
  */
 public void setKolicinaNaStanju(double kolicinaNaStanju) {
     if(kolicinaNaStanju<0) throw new IllegalArgumentException("Kolicina ne moze biti manja od 0.");
@@ -189,6 +197,8 @@ public int getVekTrajanjaUMesecima() {
 /**
  * Postavlja vek trajanja proizvoda u mesecima.
  * @param vekTrajanjaUMesecima Vek trajanja proizvoda izrazen u mesecima.
+ * @throws IllegalArgumentException kada je vek trajanja proizvoda kraci od jednog meseca.
+
  */
 public void setVekTrajanjaUMesecima(int vekTrajanjaUMesecima) {
     if(vekTrajanjaUMesecima<=0) throw new IllegalArgumentException("Vek trajanja ne moze biti kraci od 1 meseca.");
@@ -205,6 +215,8 @@ public Date getDatumPocetkaProizvodnje() {
 /**
  * Postavlja datum pocetka proizvodnje proizvoda, tj. onaj datum kada je proizvod dodat u bazu.
  * @param datumPocetkaProizvodnje Datum pocetka proizvodnje proizvoda.
+ * @throws IllegalArgumentException kada je datum pocetka proizvodnje proizvoda datum kasniji u odnosu na danasnji datum.
+ * @throws NullPointerException kada je datum pocetka proizvodnje proizvoda null.
  */
 public void setDatumPocetkaProizvodnje(Date datumPocetkaProizvodnje) {
 	if(datumPocetkaProizvodnje==null) throw new NullPointerException("Datum pocetka proizvodnje proizvoda ne sme biti null");
@@ -221,6 +233,8 @@ public Korisnik getKorisnik() {
 /**
  * Postavlja informacije o Korisniku koji je uneo proizvod u sistem.
  * @param korisnik Korisnik koji je uneo proizvod u sistem.
+  * @throws NullPointerException kada je korisnik nadlezan za proizvod null.
+
  */
 public void setKorisnik(Korisnik korisnik) {
 	if(korisnik==null) throw new NullPointerException("Korisnik ne sme biti null");
@@ -237,6 +251,9 @@ public ArrayList<ElementProizvoda> getSastavnica() {
 /**
  * Postavlja sve Elemente Proizvoda koji su neophodni za proizvodnju istog.
  * @param sastavnica Lista elemenata proizvoda potrebnih za njegovu proizvodnju.
+ * @throws IllegalArgumentException kada je lista elemenata proizvoda prazna.
+ * @throws NullPointerException kada je lista elemenata proizvoda null.
+ * 
  */
 public void setSastavnica(ArrayList<ElementProizvoda> sastavnica) {
 	if(sastavnica==null) throw new NullPointerException("Lista elemenata proizvoda ne sme biti null");

@@ -67,6 +67,7 @@ public long getKorisnikID() {
 /**
  * Postavlja jedinstveni identifikator korisnika.
  * @param korisnikID Identifikator korisnika koji postavljamo.
+ * @throws IllegalArgumentException kada je id manji od 1.
  */
 public void setKorisnikID(long korisnikID) {
     if(korisnikID<=0) throw new IllegalArgumentException("Kao ID moze se dodeliti samo pozitivan ceo broj.");
@@ -82,6 +83,8 @@ public String getImePrezime() {
 /**
  * Postavlja ime i prezime korisnika.
  * @param imePrezime Ime i prezime korisnika.
+ * @throws IllegalArgumentException kada je ime i prezime korisnika prazan string.
+ * @throws NullPointerException kada je ime i prezime korisnika null.
  */
 public void setImePrezime(String imePrezime) {
 	if(imePrezime==null) throw new NullPointerException("Ime i prezime korisnika ne sme biti null");
@@ -99,6 +102,8 @@ public String getKorisnickoIme() {
  * Postavlja korisnicko ime za nekog korisnika.
  * Korisnicko ime mora biti jedinstveno.
  * @param korisnickoIme Korisnicko ime korisnika.
+ * @throws IllegalArgumentException kada je korisnicko ime korisnika prazan string.
+ * @throws NullPointerException kada je korisnicko ime korisnika null.
  */
 public void setKorisnickoIme(String korisnickoIme) {
 	if(korisnickoIme==null) throw new NullPointerException("Korisnicko ime korisnika ne sme biti null");
@@ -117,6 +122,8 @@ public String getLozinka() {
 /**
  * Postavlja lozinku odredjenog korisnika.
  * @param lozinka Lozinka za logovanje korisnika.
+ * @throws IllegalArgumentException kada je lozinka korisnika prazan string.
+ * @throws NullPointerException kada je lozinka korisnika null.
  */
 
 public void setLozinka(String lozinka) {
@@ -136,6 +143,8 @@ public String getRadnoMesto() {
 /**
  * Postavlja radno mesto, tj. poziciju u kompaniji odredjenog korisnika.
  * @param radnoMesto Radno mesto korisnika.
+ * @throws IllegalArgumentException kada je radno mesto korisnika prazan string.
+ * @throws NullPointerException kada je radno mesto korisnika null.
  */
 
 public void setRadnoMesto(String radnoMesto) {

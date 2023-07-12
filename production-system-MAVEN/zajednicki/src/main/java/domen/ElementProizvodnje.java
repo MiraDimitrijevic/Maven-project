@@ -69,6 +69,8 @@ public Proizvodnja getProizvodnja() {
 /**
  * Postavlja proizvodnju kojoj element pripada.
  * @param proizvodnja Proizvodnja na koju se element odnosi.
+ * @throws NullPointerException kada je proizvodnja kojoj element pripada null.
+
  */
 public void setProizvodnja(Proizvodnja proizvodnja) {
 	if(proizvodnja==null) throw new NullPointerException("Proizvodnja ne sme biti null");
@@ -85,6 +87,8 @@ public long getRbr() {
 /**
  * Postavlja redni broj proizvoda u definisanoj proizvodnji.
  * @param rbr Redni broj elementa specificirane proizvodnje.
+ * @throws IllegalArgumentException kada je redni broj elementa manji od 1.
+
  */
 public void setRbr(long rbr) {
     if(rbr<=0) throw new IllegalArgumentException("Kao redni broj moze se dodeliti samo pozitivan ceo broj.");
@@ -100,6 +104,8 @@ public Proizvod getProizvod() {
 /**
  * Postavlja proizvod koji se proizvodi u seriji.
  * @param proizvod Proizvod na koji se element odnosi.
+ * @throws NullPointerException kada je proizvod na koji se element odnosi null.
+
  */
 public void setProizvod(Proizvod proizvod) {
 	if(proizvod==null) throw new NullPointerException("Proizvod ne sme biti null");
@@ -116,6 +122,8 @@ public JedinicaMere getJedinicaMere() {
 /**
  * Postavlja jedinicu mere u kojoj je izrazena kolicina proizvoda koja predstavlja izlaz procesa proizvodnje.
  * @param jedinicaMere Jedinica mere u kojoj je izrazena kolicina proizvoda.
+ * @throws NullPointerException kada je jedinica mere u kojoj je izrazena kolicina elementa null.
+
  */
 public void setJedinicaMere(JedinicaMere jedinicaMere) {
 	if(jedinicaMere==null) throw new NullPointerException("Jedinica mere ne sme biti null");
@@ -132,6 +140,8 @@ public double getKolicina() {
 /**
  * Postavlja kolicinu proizvoda koja predstavlja izlaz procesa proizvodnje.
  * @param kolicina Kolicina proizvoda.
+ * @throws IllegalArgumentException kada je kolicina manja od 0.
+
  */
 public void setKolicina(double kolicina) {
     if(kolicina<0) throw new IllegalArgumentException("Kolicina ne moze biti manja od 0.");

@@ -25,10 +25,25 @@ JedinicaMere jedinicaMere;
 	}
 	
 	@Test
+	void testSetJMIDNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->jedinicaMere.setJMID(-111L));
+	}
+	@Test
 	void testSetNazivJM() {
 		jedinicaMere.setNazivJM("kg");
 		assertEquals("kg", jedinicaMere.getNazivJM());
 	}
+	
+	@Test
+	void testSetNazivJMNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->jedinicaMere.setNazivJM(""));
+	}
+	
+	@Test
+	void testSetNazivJMNull() {
+		assertThrows(NullPointerException.class, ()->jedinicaMere.setNazivJM(null));
+	}
+	
 	
 	
 	@Test

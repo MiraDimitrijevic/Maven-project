@@ -25,9 +25,24 @@ private Grad grad;
 	}
 	
 	@Test
+	void testSetGradIDNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->grad.setGradID(-111L));
+	}
+	
+	@Test
 	void testSetNazivGrada() {
 		grad.setNazivGrada("Beograd");
 		assertEquals("Beograd", grad.getNazivGrada());
+	}
+	
+	@Test
+	void testSetNazivGradaNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->grad.setNazivGrada(""));
+	}
+	
+	@Test
+	void testSetNazivGradaNull() {
+		assertThrows(NullPointerException.class, ()->grad.setNazivGrada(null));
 	}
 	
 	@Test

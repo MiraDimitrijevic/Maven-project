@@ -26,9 +26,24 @@ Materijal materijal;
 	}
 	
 	@Test
+	void testSetMaterijalIDNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->materijal.setMaterijalID(-111L));
+	}
+	
+	@Test
 	void testSetNaziv() {
 		materijal.setNazivMaterijala("glina");
 		assertEquals("glina", materijal.getNazivMaterijala());
+	}
+	
+	@Test
+	void testSetNazivMaterijalaNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->materijal.setNazivMaterijala(""));
+	}
+	
+	@Test
+	void testSetNazivMaterijalaNull() {
+		assertThrows(NullPointerException.class, ()->materijal.setNazivMaterijala(null));
 	}
 	
 	@Test
@@ -38,9 +53,24 @@ Materijal materijal;
 	}
 	
 	@Test
+	void testSetOpisMaterijalaNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->materijal.setOpisMaterijala(""));
+	}
+	
+	@Test
+	void testSetOpisMaterijalaNull() {
+		assertThrows(NullPointerException.class, ()->materijal.setOpisMaterijala(null));
+	}
+	
+	@Test
 	void testSetKolicina() {
 		materijal.setKolicinaNaStanju(11.6);
 		assertEquals( 11.6,materijal.getKolicinaNaStanju());
+	}
+	
+	@Test
+	void testSetKolicinaMaterijalaNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->materijal.setKolicinaNaStanju(-3));
 	}
 	
 	@Test

@@ -23,11 +23,26 @@ Korisnik korisnik;
 		korisnik.setKorisnikID(5L);
 		assertEquals(5L, korisnik.getKorisnikID());
 	}
+	
+	@Test
+	void testSetKorisnikIDNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->korisnik.setKorisnikID(-111L));
+	}
 
 	@Test
 	void testSetImePrezime() {
 		korisnik.setImePrezime("Marko Markovic");
 		assertEquals("Marko Markovic", korisnik.getImePrezime());
+	}
+	
+	@Test
+	void testSetImePrezimeNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->korisnik.setImePrezime(""));
+	}
+	
+	@Test
+	void testSetImePrezimeNull() {
+		assertThrows(NullPointerException.class, ()->korisnik.setImePrezime(null));
 	}
 	
 	@Test
@@ -37,15 +52,47 @@ Korisnik korisnik;
 	}
 	
 	@Test
+	void testSetKorisnickoImeNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->korisnik.setKorisnickoIme(""));
+	}
+	
+	@Test
+	void testSetKorisnickoImeNull() {
+		assertThrows(NullPointerException.class, ()->korisnik.setKorisnickoIme(null));
+	}
+	
+	
+	@Test
 	void testSetLozinka() {
 		korisnik.setLozinka("marko123");
 		assertEquals("marko123", korisnik.getLozinka());
 	}
 	
 	@Test
+	void testSetLozinkaNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->korisnik.setLozinka(""));
+	}
+	
+	@Test
+	void testSetLozinkaNull() {
+		assertThrows(NullPointerException.class, ()->korisnik.setLozinka(null));
+	}
+	
+	
+	@Test
 	void testSetRadnoMesto() {
 		korisnik.setRadnoMesto("menadzer");
 		assertEquals("menadzer", korisnik.getRadnoMesto());
+	}
+	
+	@Test
+	void testSetRadnoMestoNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->korisnik.setRadnoMesto(""));
+	}
+	
+	@Test
+	void testSetRadnoMestoNull() {
+		assertThrows(NullPointerException.class, ()->korisnik.setRadnoMesto(null));
 	}
 	
 	@Test

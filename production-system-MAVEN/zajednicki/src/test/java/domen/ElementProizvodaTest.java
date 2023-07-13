@@ -34,10 +34,21 @@ Materijal materijal;
 	}
 	
 	@Test
+	void testSetRBRNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->elementProizvoda.setRbr(-111L));
+	}
+	
+	@Test
 	void testSetKolicina() {
 		elementProizvoda.setKolicina(11.6);
 		assertEquals(11.6, elementProizvoda.getKolicina());
 	}
+	
+	@Test
+	void testSetKolicinaNedozvoljenaVrednost() {
+		assertThrows(IllegalArgumentException.class, ()->elementProizvoda.setKolicina(-3));
+	}
+	
 	
 	@Test
 	void testSetProizvod() {
@@ -47,11 +58,23 @@ Materijal materijal;
 	}
 	
 	@Test
+	void testSetProizvodNull() {
+		assertThrows(NullPointerException.class, ()->elementProizvoda.setProizvod(null));
+	}
+	
+	
+	@Test
 	void testSetJM() {
 		jedinicaMere= new JedinicaMere();
 		elementProizvoda.setJedinicaMere(jedinicaMere);
 		assertEquals(jedinicaMere, elementProizvoda.getJedinicaMere());
 	}
+	
+	@Test
+	void testSetJMNull() {
+		assertThrows(NullPointerException.class, ()->elementProizvoda.setJedinicaMere(null));
+	}
+	
 	
 	
 	@Test
@@ -60,6 +83,9 @@ Materijal materijal;
 		elementProizvoda.setMaterijal(materijal);
 		assertEquals(materijal, elementProizvoda.getMaterijal());
 	}
-
+	@Test
+	void testSetMaterijalNull() {
+		assertThrows(NullPointerException.class, ()->elementProizvoda.setMaterijal(null));
+	}
 
 }

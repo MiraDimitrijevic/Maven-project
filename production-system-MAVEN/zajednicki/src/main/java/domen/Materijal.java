@@ -1,6 +1,7 @@
 package domen;
 
 import java.io.Serializable;
+import java.util.Objects;
 /**
  * Klasa Materijal predstavlja ulaz procesa proizvodnje. Implementira interfejs Serializable.
  * 
@@ -135,6 +136,28 @@ public void setKolicinaNaStanju(double kolicinaNaStanju) {
 
 	this.kolicinaNaStanju = kolicinaNaStanju;
 }
+/**
+ * Poredi dva materijala prema identifikatoru i nazivu.
+ * 
+ * @return 
+ * <ul>
+ * 		<li> true - ako je unet isti objekat ili ako su id i naziv materijala isti. </li>
+ * 		<li> false - ako je unet null objekat ili ako uneti objekat nije klase Materijal. </li>
+ * </ul>
+ */
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Materijal other = (Materijal) obj;
+	return materijalID == other.materijalID && Objects.equals(nazivMaterijala, other.nazivMaterijala);
+}
+
+
 
 
 }

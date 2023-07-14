@@ -2,6 +2,7 @@ package domen;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 /**
  * Klasa Pogon predstavlja pogon preduzeca. Implementira interfejs Serializable.
  * 
@@ -204,6 +205,26 @@ public Pogon(long pogonID, Date datumPocetkaRada, Grad grad, String adresa, Stri
 	public String toString() {
 		return grad+" ,"+adresa;
 	}
+/**
+ * Poredi dva pogona prema identifikatoru i kontaktu.
+ * 
+ * @return 
+ * <ul>
+ * 		<li> true - ako je unet isti objekat ili ako su id i kontakt pogona isti. </li>
+ * 		<li> false - ako je unet null objekat ili ako uneti objekat nije klase Pogon. </li>
+ * </ul>
+ */
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Pogon other = (Pogon) obj;
+	return Objects.equals(kontakt, other.kontakt) && pogonID == other.pogonID;
+}
 
 
 }

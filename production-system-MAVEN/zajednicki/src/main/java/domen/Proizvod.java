@@ -3,6 +3,7 @@ package domen;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 /**
  * Klasa Proizvod predstavlja izlaz procesa proizvodnje, odnosno
  * proizvod koji se proizvodi u preduzecu. Implementira interfejs Serializable.
@@ -260,6 +261,28 @@ public void setSastavnica(ArrayList<ElementProizvoda> sastavnica) {
     if(sastavnica.size()==0) throw new IllegalArgumentException("Lista elemenata proizvoda ne moze biti prazna");
 	this.sastavnica = sastavnica;
 }
+
+/**
+ * Poredi dva proizvoda prema identifikatoru i nazivu.
+ * 
+ * @return 
+ * <ul>
+ * 		<li> true - ako je unet isti objekat ili ako su id i naziv proizvoda isti. </li>
+ * 		<li> false - ako je unet null objekat ili ako uneti objekat nije klase Proizvod. </li>
+ * </ul>
+ */
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Proizvod other = (Proizvod) obj;
+	return Objects.equals(nazivProizvoda, other.nazivProizvoda) && proizvodID == other.proizvodID;
+}
+
 
 
 }

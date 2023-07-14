@@ -91,7 +91,7 @@ public class DBBroker {
  * Baca SQLException pri pokusaju izvrsenja neadekvatnog upita nad podacima u bazi.
  * @return Jedinstveni identifikator korisnika.
  */
-	private long getKorisnikID() {
+	public long getKorisnikID() {
 		long korisnikID=0;
 		String upit="SELECT MAX(korisnikID) FROM korisnik";
 		try {
@@ -198,7 +198,7 @@ public class DBBroker {
 	 * Baca SQLException pri pokusaju izvrsenja neadekvatnog upita nad podacima u bazi.
 	 * @return Jedinstveni identifikator materijala.
 	 */
-	private long getMaterijalID() {
+	public long getMaterijalID() {
 		long materijalID=0;
 		String upit="SELECT MAX(MaterijalID) FROM ulaznimaterijal";
 		try {
@@ -337,7 +337,7 @@ lista.add(kor)			;}
 	 * Baca SQLException pri pokusaju izvrsenja neadekvatnog upita nad podacima u bazi.
 	 * @return Jedinstveni identifikator pogona.
 	 */
-	private long getPogonID() {
+	public long getPogonID() {
 		long pogonID=0;
 		String upit="SELECT MAX(PogonID) FROM pogon";
 		try {
@@ -503,7 +503,7 @@ lista.add(kor)			;}
 	 * Baca SQLException pri pokusaju izvrsenja neadekvatnog upita nad podacima u bazi.
 	 * @return Jedinstveni identifikator proizvoda.
 	 */
-	private long getProizvodID() {
+	public long getProizvodID() {
 		long proizvodID=0;
 		String upit="SELECT MAX(proizvodID) FROM proizvod";
 		try {
@@ -664,7 +664,7 @@ Proizvod pro= new Proizvod(rs.getLong(1), rs.getString(2),  rs.getString(3), rs.
 	 * Baca SQLException pri pokusaju izvrsenja neadekvatnog upita nad podacima u bazi.
 	 * @return Jedinstveni identifikator proizvodnje.
 	 */
-	private long getProizvodnjaID() {
+	public long getProizvodnjaID() {
 		long proizvodnjaID=0;
 		String upit="SELECT MAX(ProizvodnjaID) FROM proizvodnja";
 		try {
@@ -679,6 +679,132 @@ Proizvod pro= new Proizvod(rs.getLong(1), rs.getString(2),  rs.getString(3), rs.
 		
 		return ++proizvodnjaID;
 	}
+	/**
+	 * Metoda koja brise odredjenog korisnika.
+	 * Brisanje iz baze omoguceno je putem klase {@link PreparedStatement}
+	 * i upita definisanog u metodi, kom se prosledjuje 
+	 * identifikator korisnika kojeg je potrebno obrisati.
+	 * @param korisnikID Identifikator korisnika koji se brise.
+	 * @throws SQLException greska koja nastaje pri pokusaju izvrsenja 
+	 * neadekvatnog upita nad podacima u bazi.
+	 * @return <ul>
+		 * 		<li> true - ako je brisanje uspesno. </li>
+		 * 		<li> false - ako brisanje nije uspesno. </li>
+		 * </ul>
+	 */
+	public boolean obrisiKorisnika(long korisnikID) throws SQLException {
+		String upit= "DELETE FROM korisnik WHERE korisnikID=?";
+		try {
+			PreparedStatement ps= Konekcija.getInstance().getCon().prepareStatement(upit);
+			ps.setLong(1, korisnikID);
+			
+			ps.executeUpdate();
+		
+			Konekcija.getInstance().getCon().commit();
+		  return true;
+		} catch (SQLException e) {
+			Konekcija.getInstance().getCon().rollback();
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+	/**
+	 * Metoda koja brise odredjeni materijal.
+	 * Brisanje iz baze omoguceno je putem klase {@link PreparedStatement}
+	 * i upita definisanog u metodi, kom se prosledjuje 
+	 * identifikator materijala kog je potrebno obrisati.
+	 * @param materijalID Identifikator materijala koji se brise.
+	 * @throws SQLException greska koja nastaje pri pokusaju izvrsenja 
+	 * neadekvatnog upita nad podacima u bazi.
+	 * @return <ul>
+		 * 		<li> true - ako je brisanje uspesno. </li>
+		 * 		<li> false - ako brisanje nije uspesno. </li>
+		 * </ul>
+	 */
+	public boolean obrisiMaterijal(long materijalID) throws SQLException {
+		String upit= "DELETE FROM ulaznimaterijal WHERE MaterijalID=?";
+		try {
+			PreparedStatement ps= Konekcija.getInstance().getCon().prepareStatement(upit);
+			ps.setLong(1, materijalID);
+			
+			ps.executeUpdate();
+		
+			Konekcija.getInstance().getCon().commit();
+			  return true;
+
+		} catch (SQLException e) {
+			Konekcija.getInstance().getCon().rollback();
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	
+	/**
+	 * Metoda koja brise odredjeni pogon.
+	 * Brisanje iz baze omoguceno je putem klase {@link PreparedStatement}
+	 * i upita definisanog u metodi, kom se prosledjuje 
+	 * identifikator pogona koji je potrebno obrisati.
+	 * @param id Identifikator pogona koji se brise.
+	 * @throws SQLException greska koja nastaje pri pokusaju izvrsenja 
+	 * neadekvatnog upita nad podacima u bazi.
+	 * @return <ul>
+		 * 		<li> true - ako je brisanje uspesno. </li>
+		 * 		<li> false - ako brisanje nije uspesno. </li>
+		 * </ul>
+	 */
+	public boolean obrisiPogon(long id) throws SQLException {
+		String upit= "DELETE FROM pogon WHERE PogonID=?";
+		try {
+			PreparedStatement ps= Konekcija.getInstance().getCon().prepareStatement(upit);
+			ps.setLong(1, id);
+			
+			ps.executeUpdate();
+		
+			Konekcija.getInstance().getCon().commit();
+			  return true;
+
+		} catch (SQLException e) {
+			Konekcija.getInstance().getCon().rollback();
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+	
+	/**
+	 * Metoda koja brise odredjenu proizvodnju.
+	 * Brisanje iz baze omoguceno je putem klase {@link PreparedStatement}
+	 * i upita definisanog u metodi, kom se prosledjuje 
+	 * identifikator proizvodnje koju je potrebno obrisati.
+	 * @param id Identifikator proizvodnje koja se brise.
+	 * @throws SQLException greska koja nastaje pri pokusaju izvrsenja 
+	 * neadekvatnog upita nad podacima u bazi.
+	 * @return <ul>
+		 * 		<li> true - ako je brisanje uspesno. </li>
+		 * 		<li> false - ako brisanje nije uspesno. </li>
+		 * </ul>
+	 */
+	public boolean obrisiProizvodnju(long id) throws SQLException {
+		String upit= "DELETE FROM proizvodnja WHERE ProizvodnjaID=?";
+		try {
+			PreparedStatement ps= Konekcija.getInstance().getCon().prepareStatement(upit);
+			ps.setLong(1, id);
+			
+			ps.executeUpdate();
+		
+			Konekcija.getInstance().getCon().commit();
+			  return true;
+
+		} catch (SQLException e) {
+			Konekcija.getInstance().getCon().rollback();
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+
 
 
 }

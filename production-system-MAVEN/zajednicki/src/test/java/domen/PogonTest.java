@@ -137,5 +137,39 @@ Korisnik korisnik;
 		assertTrue(pogon.toString().contains("Zmaj Jovina 5"));
 		
 	}
+	
+	@ParameterizedTest
+	@CsvSource ({
+		"15, 0111111, 15, 0111111, true",
+		"15, 0111111, 17, 0111111, false",
+		"15, 0111111, 15, 0112222, false",
+		"15, 0111111, 17, 0112222, false"
+	})
+	void testEquals( long id1, String k1, long id2,
+			String k2,  boolean isti) {
+	pogon.setKontakt(k1);
+	pogon.setPogonID(id1);
+	Pogon pogon2= new Pogon();
+	pogon2.setKontakt(k2);
+	pogon2.setPogonID(id2);
+			
+		assertEquals(isti, pogon.equals(pogon2));
+	}
+	
+	@Test
+	void testEqualsNull() {
+		assertFalse(pogon.equals(null));
+	}
+	
+	@Test
+	void testEqualsIsti() {
+		assertTrue(pogon.equals(pogon));
+	}
+	
+	@Test
+	void testEqualsDrugaKlasa() {
+		assertFalse(pogon.equals(new Exception()));
+	}
+	
 
 }

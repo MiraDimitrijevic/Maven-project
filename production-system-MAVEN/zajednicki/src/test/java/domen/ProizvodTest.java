@@ -162,5 +162,35 @@ Korisnik korisnik;
 		assertTrue(proizvod.toString().contains("vaza"));
 	}
 	
+	@ParameterizedTest
+	@CsvSource ({
+		"vaza, 15, vaza, 15, true",
+		"vaza, 15, sveca, 15, false",
+		"vaza, 15, vaza, 17, false",
+		"vaza, 15, sveca, 17, false"
+	})
+	void testEquals(String pn1, long id1,
+			String pn2, long id2, boolean isti) {
+		proizvod.setNazivProizvoda(pn1);
+		proizvod.setProizvodID(id1);
+		Proizvod proizvod2= new Proizvod();
+		proizvod2.setNazivProizvoda(pn2);
+		proizvod2.setProizvodID(id2);
+		assertEquals(isti, proizvod.equals(proizvod2));
+	}
 	
+	@Test
+	void testEqualsNull() {
+		assertFalse(proizvod.equals(null));
+	}
+	
+	@Test
+	void testEqualsIsti() {
+		assertTrue(proizvod.equals(proizvod));
+	}
+	
+	@Test
+	void testEqualsDrugaKlasa() {
+		assertFalse(proizvod.equals(new Exception()));
+	}
 }
